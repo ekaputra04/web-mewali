@@ -1,0 +1,12 @@
+/* * {
+    border: 1px solid black;
+} */
+
+#thumbnail-home {
+    /* background-image: url("../img/kecak.jpg"); */
+    background-image: url("https://d2mo2a5fvrklap.cloudfront.net/app/uploads/sites/2/2022/07/13183332/uluwatu-moments-balinesesonganddance-desktop-2.jpg");
+    background-position: center;
+    overflow: hidden;
+    background-size: cover;
+    height: 25em;
+}

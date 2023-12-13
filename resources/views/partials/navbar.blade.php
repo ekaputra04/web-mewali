@@ -18,11 +18,11 @@
                 </li>
                 <li class="nav-item">
                     {{-- <a class="nav-link {{ $active === 'posts' ? 'active' : '' }}" href="/posts">Blog</a> --}}
-                    <a class="nav-link " aria-current="page" href="/">Sarana Upacara</a>
+                    <a class="nav-link " aria-current="page" href="/sarana">Sarana Upacara</a>
                 </li>
                 <li class="nav-item">
                     {{-- <a class="nav-link {{ $active === 'categories' ? 'active' : '' }}" href="/categories">Categories</a> --}}
-                    <a class="nav-link " aria-current="page" href="/">Paket Upacara</a>
+                    <a class="nav-link " aria-current="page" href="/paket">Paket Upacara</a>
                 </li>                
             </ul>
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -35,10 +35,14 @@
             </form>
 
             <div class="text-end">
-              <button type="button" class="btn btn-outline-light me-2">
-                Login
-              </button>
-              <button type="button" class="btn btn-warning">Sign-up</button>
+              <a href="/login">
+                <button type="button" class="btn btn-outline-light me-2">
+                  Login
+                </button>
+              </a>
+              <a href="/register">
+                <button type="button" class="btn btn-warning">Sign-up</button>
+              </a>
             </div>
         </div>
     </div>

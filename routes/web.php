@@ -24,3 +24,19 @@ Route::get('/posts', function () {
 Route::get('/post', function () {
     return view('post');
 });
+
+Route::get('/sarana', function () {
+    return view('sarana');
+});
+
+Route::get('/paket', function () {
+    return view('paket');
+});
+
+Route::get('/login', function () {
+    return view('login.login');
+});
+
+Route::get('/register', function () {
+    return view('register.register');
+});

@@ -1,0 +1,41 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.form-signin {
+    max-width: 330px;
+    padding: 1rem;
+}
+
+.form-signin .form-floating:focus-within {
+    z-index: 2;
+}
+
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.content {
+    background-image: url("https://d2mo2a5fvrklap.cloudfront.net/app/uploads/sites/2/2022/07/13183332/uluwatu-moments-balinesesonganddance-desktop-2.jpg");
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+}
+
+.item {
+    filter: drop-shadow(2px 4px 6px black);
+    background-color: rgb(152 151 151 / 25%);
+    box-shadow: inset 0 0 0 200px rgb(255 255 255 / 8%);
+    border-radius: 1em;
+}

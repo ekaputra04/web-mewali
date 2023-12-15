@@ -16,7 +16,7 @@
                         <rect width="100%" height="100%" fill="var(--bs-secondary-color)" />
                         <image href="{{ asset('img/melasti 2.jpg') }}" width="100%" height="55em" style="margin-top: -50px;"/>
                     </svg>
-                    <div class="container">
+                    <div class="container ">
                         <div class="carousel-caption text-start">
                             <h1>Upacara Melasti</h1>
                             <!-- <p class="opacity-75">

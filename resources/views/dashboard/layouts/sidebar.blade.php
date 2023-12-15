@@ -3,7 +3,7 @@
         aria-labelledby="sidebarMenuLabel">
         <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="sidebarMenuLabel">
-                    My Web
+                    Mewali
                 </h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"
                 aria-label="Close"></button>
@@ -24,7 +24,23 @@
                         <svg class="bi">
                             <use xlink:href="#file-earmark" />
                         </svg>
-                        My Posts
+                        Post Saya
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('dashboard/sarana') ? 'active' : '' }}" href="/dashboard/sarana">
+                        <svg class="bi">
+                            <use xlink:href="#file-earmark" />
+                        </svg>
+                        Sarana Upacara
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('dashboard/paket') ? 'active' : '' }}" href="/dashboard/paket">
+                        <svg class="bi">
+                            <use xlink:href="#file-earmark" />
+                        </svg>
+                        Paket Upacara
                     </a>
                 </li>
             </ul>
@@ -37,7 +53,7 @@
                         <svg class="bi">
                             <use xlink:href="#gear-wide-connected" />
                         </svg>
-                        Settings
+                        Profile
                     </a>
                 </li>
                 <li class="nav-item">

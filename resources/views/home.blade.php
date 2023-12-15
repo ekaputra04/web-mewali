@@ -1,7 +1,7 @@
 @extends('layouts/main')
 
 @section('container')
-    <main class="container mt-4 ">
+    <main class="container mt-5 ">
         <div class="p-0  mb-4 rounded align-items-end" id="thumbnail-home" data-aos="fade-up" data-aos-duration="1500" id="home">
             <div class="col-lg-6 mt-5 p-5 fs-3">
                 <h1 class="display-4 fst-italic text-white fw-bold">

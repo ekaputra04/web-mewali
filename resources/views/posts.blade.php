@@ -14,17 +14,18 @@
                     <svg class="bd-placeholder-img" width="100%" height="20em" xmlns="http://www.w3.org/2000/svg"
                         aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
                         <rect width="100%" height="100%" fill="var(--bs-secondary-color)" />
+                        <image href="{{ asset('img/melasti 2.jpg') }}" width="100%" height="55em" style="margin-top: -50px;"/>
                     </svg>
                     <div class="container">
                         <div class="carousel-caption text-start">
-                            <h1>Example headline.</h1>
-                            <p class="opacity-75">
+                            <h1>Upacara Melasti</h1>
+                            <!-- <p class="opacity-75">
                                 Some representative placeholder content for the first slide of
                                 the carousel.
                             </p>
                             <p>
                                 <a class="btn btn-lg btn-primary" href="#">Sign up today</a>
-                            </p>
+                            </p> -->
                         </div>
                     </div>
                 </div>
@@ -32,15 +33,16 @@
                     <svg class="bd-placeholder-img" width="100%" height="20em" xmlns="http://www.w3.org/2000/svg"
                         aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
                         <rect width="100%" height="100%" fill="var(--bs-secondary-color)" />
+                        <image href="{{ asset('img/mepandes 2.jpg') }}" width="100%" height="100%" />
                     </svg>
                     <div class="container">
                         <div class="carousel-caption">
-                            <h1>Another example headline.</h1>
-                            <p>
+                            <h1>Mepandes</h1>
+                            <!-- <p>
                                 Some representative placeholder content for the second slide
                                 of the carousel.
                             </p>
-                            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+                            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p> -->
                         </div>
                     </div>
                 </div>
@@ -48,17 +50,18 @@
                     <svg class="bd-placeholder-img" width="100%" height="20em" xmlns="http://www.w3.org/2000/svg"
                         aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
                         <rect width="100%" height="100%" fill="var(--bs-secondary-color)" />
+                        <image href="{{ asset('img/pawiwahan 2.jpg') }}" width="100%" height="100%" />
                     </svg>
                     <div class="container">
                         <div class="carousel-caption text-end">
-                            <h1>One more for good measure.</h1>
-                            <p>
+                            <h1>Pawiwahan</h1>
+                            <!-- <p>
                                 Some representative placeholder content for the third slide of
                                 this carousel.
                             </p>
                             <p>
                                 <a class="btn btn-lg btn-primary" href="#">Browse gallery</a>
-                            </p>
+                            </p> -->
                         </div>
                     </div>
                 </div>
@@ -77,8 +80,8 @@
     ================================================== -->
         <!-- Wrap the rest of the page in another container to center all the content. -->
 
-        <div class="container marketing">
-            <!-- Three columns of text below the carousel -->
+        <!-- <div class="container marketing">
+            
             <div class="row">
                 <div class="col-lg-4">
                     <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
@@ -96,7 +99,7 @@
                         <a class="btn btn-secondary" href="#">View details &raquo;</a>
                     </p>
                 </div>
-                <!-- /.col-lg-4 -->
+               
                 <div class="col-lg-4">
                     <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
                         xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder"
@@ -113,7 +116,7 @@
                         <a class="btn btn-secondary" href="#">View details &raquo;</a>
                     </p>
                 </div>
-                <!-- /.col-lg-4 -->
+               
                 <div class="col-lg-4">
                     <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
                         xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder"
@@ -130,9 +133,9 @@
                         <a class="btn btn-secondary" href="#">View details &raquo;</a>
                     </p>
                 </div>
-                <!-- /.col-lg-4 -->
-            </div>
-            <!-- /.row -->
+               
+            </div> -->
+            
 
             <!-- START THE FEATURETTES -->
 
@@ -141,25 +144,28 @@
             <div class="row featurette">
                 <div class="col-md-7">
                     <h2 class="featurette-heading fw-normal lh-1">
-                        First featurette heading.
-                        <span class="text-body-secondary">It’ll blow your mind.</span>
+                        Tradisi Ritual Pembakaran Jenazah di Bali
                     </h2>
+                    <span class="text-body-secondary">13 Desember 2023</span>
                     <p class="lead">
-                        Some great placeholder content for the first featurette here.
-                        Imagine some exciting prose here.
+                        Ngaben adalah upacara pembakaran jenazah umat Hindu di Bali. Upacara ngaben merupakan suatu ritual yang dilaksanakan untuk mengembalikan roh leluhur ke tempat asalnya.
+                        Ngaben dalam Bahasa Bali berkonotasi halus yang sering disebut palebon.
+                    </p>
+                    <p>
+                        <a class="btn btn-primary" href="#">Baca Selengkapnya</a>
                     </p>
                 </div>
                 <div class="col-md-5">
-                    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-                        width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img"
+                    <img width="500" height="250" src="{{ asset('img/ngaben.jpg') }}" alt="Logo Mewali">
+                    <!-- <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+                        width="500" height="250" xmlns="http://www.w3.org/2000/svg" role="img"
                         aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
                         <title>Placeholder</title>
                         <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" />
-                        <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">
-                            500x500
-                        </text>
-                    </svg>
+                        <image href="{{ asset('img/ngaben.jpg') }}" width="100%" height="20em" />
+                    </svg> -->
                 </div>
+
             </div>
 
             <hr class="featurette-divider" />
@@ -167,25 +173,28 @@
             <div class="row featurette">
                 <div class="col-md-7 order-md-2">
                     <h2 class="featurette-heading fw-normal lh-1">
-                        Oh yeah, it’s that good.
-                        <span class="text-body-secondary">See for yourself.</span>
+                        Tradisi Penyucian Diri Menjelang Hari Raya Nyepi
                     </h2>
+                    <span class="text-body-secondary">13 Desember 2023</span>
                     <p class="lead">
-                        Another featurette? Of course. More placeholder content here to
-                        give you an idea of how this layout would work with some actual
-                        real-world content in place.
+                        Upacara Melasti merupakan salah satu dari rangkaian perayaan Nyepi yang berlangsung sebelum hari raya Nyepi.
+                        Upacara ini bisa diartikan sebagai ritual menghanyutkan kotoran alam menggunakan air kehidupan.
+                    </p>
+                    <p>
+                        <a class="btn btn-primary" href="#">Baca Selengkapnya</a>
                     </p>
                 </div>
                 <div class="col-md-5 order-md-1">
-                    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-                        width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img"
+                <img width="500" height="250" src="{{ asset('img/melasti.jpg') }}" alt="Logo Mewali">
+                    <!-- <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+                        width="500" height="250" xmlns="http://www.w3.org/2000/svg" role="img"
                         aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
                         <title>Placeholder</title>
                         <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" />
                         <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">
                             500x500
                         </text>
-                    </svg>
+                    </svg> -->
                 </div>
             </div>
 
@@ -194,26 +203,86 @@
             <div class="row featurette">
                 <div class="col-md-7">
                     <h2 class="featurette-heading fw-normal lh-1">
-                        And lastly, this one.
-                        <span class="text-body-secondary">Checkmate.</span>
+                        Upacara Untuk Meningkatkan Ketajaman Pikiran
                     </h2>
+                    <span class="text-body-secondary">13 Desember 2023</span>
                     <p class="lead">
-                        And yes, this is the last block of representative placeholder
-                        content. Again, not really intended to be actually read, simply
-                        here to give you a better view of what this would look like with
-                        some actual content. Your content.
+                        Tumpek landep merupakan hari raya pemujaan kepada Ida Bhatara Sang Hyang Siwa Pasupati sebagai dewanya taksu. Hari raya Tumpek Landep sendiri merupakan rentetan setelah hari raya saraswati.
+                    </p>
+                    <p>
+                        <a class="btn btn-primary" href="#">Baca Selengkapnya</a>
                     </p>
                 </div>
                 <div class="col-md-5">
-                    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-                        width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img"
+                <img width="500" height="250" src="{{ asset('img/tumpek landep.jpg') }}" alt="Logo Mewali">
+                    <!-- <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+                        width="500" height="250" xmlns="http://www.w3.org/2000/svg" role="img"
                         aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
                         <title>Placeholder</title>
                         <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" />
                         <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">
                             500x500
                         </text>
-                    </svg>
+                    </svg> -->
+                </div>
+            </div>
+
+            <hr class="featurette-divider" />
+
+            <div class="row featurette">
+                <div class="col-md-7 order-md-2">
+                    <h2 class="featurette-heading fw-normal lh-1">
+                        Upacara Potong Gigi di Bali
+                    </h2>
+                    <span class="text-body-secondary">13 Desember 2023</span>
+                    <p class="lead">
+                        Metatah atau Mepandes atau Mesangih adalah suatu prosesi keagamaan yang dilaksanakan sebagai penanda peralihan ke suatu tahapan kehidupan yang lebih berbahaya.
+                    </p>
+                    <p>
+                        <a class="btn btn-primary" href="#">Baca Selengkapnya</a>
+                    </p>
+                </div>
+                <div class="col-md-5 order-md-1">
+                <img width="500" height="250" src="{{ asset('img/mepandes.jpg') }}" alt="Logo Mewali">
+                    <!-- <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+                        width="500" height="250" xmlns="http://www.w3.org/2000/svg" role="img"
+                        aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" />
+                        <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">
+                            500x500
+                        </text>
+                    </svg> -->
+                </div>
+            </div>
+
+            <hr class="featurette-divider" />
+
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading fw-normal lh-1">
+                        Tradisi Pernikahan Adat Hindu Di Bali
+                    </h2>
+                    <span class="text-body-secondary">13 Desember 2023</span>
+                    <p class="lead">
+                    Dalam umat Hindu Bali, dikenal istilah pawiwahan. Pawiwahan sejatinya merupakan ikatan suci dan komitmen sepanjang hidup menjadi suami dan istri,
+                    serta merupakan ikatan sosial yang paling kuat yang ada antara laki-laki dan perempuan.
+                    </p>
+                    <p>
+                        <a class="btn btn-primary" href="#">Baca Selengkapnya</a>
+                    </p>
+                </div>
+                <div class="col-md-5">
+                <img width="500" height="250" src="{{ asset('img/pawiwahan.jpg') }}" alt="Logo Mewali">
+                    <!-- <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+                        width="500" height="250" xmlns="http://www.w3.org/2000/svg" role="img"
+                        aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" />
+                        <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">
+                            500x500
+                        </text>
+                    </svg> -->
                 </div>
             </div>
 

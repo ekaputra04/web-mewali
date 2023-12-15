@@ -15,14 +15,23 @@
 
     {{-- My Styles --}}
     <link rel="stylesheet" href="/css/sign-in.css">
+
+    {{-- aos --}}
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <title>Mewali | Login</title>
 </head>
 
 <body>
+
     <div
         class="row justify-content-center overflow-hidden d-flex justify-content-center align-items-center overflow-auto content">
-        <div class="col-lg-4 col-md-5 col-sm-6 p-5 bg-white item" >
-          
+
+        <div class="">
+            <a href="/" class="btn btn-success btn-sm "><i class="bi bi-arrow-left"></i> Kembali Ke Website</a>
+        </div>
+
+        <div class="col-lg-4 col-md-5 col-sm-6 p-5 bg-white item" style="margin-top: -5em;"  id="home" data-aos="zoom-in" data-aos-duration="1500">
             @if (session()->has('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ session('success') }}
@@ -66,18 +75,23 @@
                         @enderror
                     </div>
 
-                    <button class="btn btn-primary w-100 py-2" type="submit">Login</button>
+                    <button class="btn btn-success w-100 py-2" type="submit">Login</button>
                 </form>
                 <small class="d-block text-center mt-3 ">Not Register?<a href="/register" class="mx-1 ">Register
                         Now!</a></small>
             </main>
         </div>
+
     </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
     </script>
 </body>
 

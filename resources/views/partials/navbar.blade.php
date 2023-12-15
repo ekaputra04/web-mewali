@@ -8,33 +8,29 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    {{-- <a class="nav-link {{ $active === 'home' ? 'active' : '' }}" aria-current="page"
-                      href="/">Home</a> --}}
-                    <a class="nav-link " aria-current="page" href="/">Home</a>
+                    <a class="nav-link {{ $active === 'home' ? 'active' : '' }}" aria-current="page"
+                      href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    {{-- <a class="nav-link {{ $active === 'about' ? 'active' : '' }}" href="/about">About</a> --}}
-                    <a class="nav-link " aria-current="page" href="/posts">Artikel</a>
+                    <a class="nav-link {{ $active === 'posts' ? 'active' : '' }}" href="/posts">Artikel</a>
                 </li>
                 <li class="nav-item">
-                    {{-- <a class="nav-link {{ $active === 'posts' ? 'active' : '' }}" href="/posts">Blog</a> --}}
-                    <a class="nav-link " aria-current="page" href="/sarana">Sarana Upacara</a>
+                    <a class="nav-link {{ $active === 'sarana' ? 'active' : '' }}" href="/sarana">Sarana Upacara</a>
                 </li>
                 <li class="nav-item">
-                    {{-- <a class="nav-link {{ $active === 'categories' ? 'active' : '' }}" href="/categories">Categories</a> --}}
-                    <a class="nav-link " aria-current="page" href="/paket">Paket Upacara</a>
+                    <a class="nav-link {{ $active === 'paket' ? 'active' : '' }}" href="/paket">Paket Upacara</a>
                 </li>                
             </ul>
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+            {{-- <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
               <input
                 type="search"
                 class="form-control "
                 placeholder="Search..."
                 aria-label="Search"
               />
-            </form>
+            </form> --}}
 
-            <div class="text-end">
+            {{-- <div class="text-end">
               <a href="/login">
                 <button type="button" class="btn btn-outline-light me-2">
                   Login
@@ -43,7 +39,38 @@
               <a href="/register">
                 <button type="button" class="btn btn-warning">Sign-up</button>
               </a>
-            </div>
+            </div> --}}
+
+            <ul class="navbar-nav ms-auto ">
+              @auth
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle active " href="#" role="button" data-bs-toggle="dropdown"
+                          aria-expanded="false">
+                          Selamat Datang, {{ auth()->user()->name }}
+                      </a>
+                      <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="/dashboard"><i class="bi bi-layout-text-sidebar-reverse"></i>
+                                  My Dashboard</a></li>
+                          <li>
+                              <hr class="dropdown-divider">
+                          </li>
+                          <li>
+                              <form action="/logout" method="POST">
+                                  @csrf
+                                  <button type="submit" class="dropdown-item">
+                                      <i class="bi bi-box-arrow-right "></i> Logout
+                                  </button>
+                              </form>
+                          </li>
+                      </ul>
+                  </li>
+              @else
+                  <li class="nav-item ">
+                      <a href="/login" class="nav-link {{ $active === 'login' ? 'active' : '' }} "><i
+                              class="bi bi-box-arrow-in-right "></i> Login</a>
+                  </li>
+              @endauth
+          </ul>
         </div>
     </div>
 </nav>

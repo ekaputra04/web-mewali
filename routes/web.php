@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,29 +18,61 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('home', [
+        'title' => 'Home',
+        'active' => 'home',
+    ]);
 });
+
+// Route::get('/', [PostController::class, 'home']);
+
 
 Route::get('/posts', function () {
-    return view('posts');
+    return view('posts', [
+        'title' => 'Artikel',
+        'active' => 'posts',
+    ]);
 });
 
-Route::get('/post', function () {
-    return view('post');
-});
+Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 
 Route::get('/sarana', function () {
-    return view('sarana');
+    return view('sarana', [
+        'title' => 'Sarana Upacara',
+        'active' => 'sarana',
+    ]);
 });
 
 Route::get('/paket', function () {
-    return view('paket');
+    return view('paket', [
+        'title' => 'Paket Upacara',
+        'active' => 'paket',
+    ]);
 });
 
-Route::get('/login', function () {
-    return view('login.login');
-});
+Route::get('/login', [LoginController::class, 'index'])
+    ->name('login')
+    ->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
+Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/register', function () {
-    return view('register.register');
-});
+Route::get('/dashboard', function () {
+    return view('dashboard.index');
+})->middleware('auth');
+
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
+Route::post('/register', [RegisterController::class, 'store']);
+Route::get('/dashboard', function () {
+    return view('dashboard.index');
+})->middleware('auth');
+
+// Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug'])->middleware('auth');
+Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
+
+// Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug'])->middleware('auth');
+// Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');

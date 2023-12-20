@@ -10,7 +10,7 @@
             @method('put')
             @csrf
             <div class="mb-3">
-                <label for="title" class="form-label">Title</label>
+                <label for="title" class="form-label">Judul</label>
                 <input type="text" class="form-control @error('title') is-invalid  @enderror" id="title" name="title"
                     required autofocus value="{{ old('title', $post->title) }}">
                 @error('title')
@@ -42,6 +42,22 @@
                 </select>
             </div>
             <div class="mb-3">
+                <label for="image" class="form-label">Post Image</label>
+                <input type="hidden" name="oldImage" value="{{ $post->image }}">
+                @if ($post->image)
+                    <img src="{{ asset('storage/' . $post->image) }}" class="img-preview img-fluid mb-3 col-sm-6 d-block ">
+                @else
+                    <img class="img-preview img-fluid mb-3 col-sm-6 ">
+                @endif
+                <input class="form-control @error('image') is-invalid  @enderror" type="file" id="image"
+                    name="image" onChange="previewImage()">
+                @error('image')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="mb-3">
                 <label for="body" class="form-label">Body</label>
                 @error('body')
                     <p class="text-danger">{{ $message }}</p>
@@ -54,14 +70,6 @@
     </div>
 
     <script>
-        // const title = document.querySelector('#title');
-        // const slug = document.querySelector('#slug');
-
-        // title.addEventListener('change', function() {
-        //     fetch('/dashboard/posts/checkSlug?title=' + title.value)
-        //         .then(response => response.json())
-        //         .then(data => slug.value => data.slug)
-        // });
         const title = document.querySelector("#title");
         const slug = document.querySelector("#slug");
 
@@ -74,5 +82,20 @@
         document.addEventListener('trix-file-accept', function(e) {
             e.preventDefault();
         })
+
+        // menampilkan gambar
+        function previewImage() {
+            const image = document.querySelector('#image');
+            const imgPreview = document.querySelector('.img-preview');
+
+            imgPreview.style.display = 'block';
+
+            const ofReader = new FileReader();
+            ofReader.readAsDataURL(image.files[0]);
+
+            ofReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
     </script>
 @endsection

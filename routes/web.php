@@ -28,12 +28,8 @@ Route::get('/', function () {
 // Route::get('/', [PostController::class, 'home']);
 
 
-Route::get('/posts', function () {
-    return view('posts', [
-        'title' => 'Artikel',
-        'active' => 'posts',
-    ]);
-});
+Route::get('/posts', [PostController::class, 'index']);
+
 
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 
@@ -79,10 +75,9 @@ Route::resource('/dashboard/sarana', DashboardSaranaController::class)->middlewa
 // Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug'])->middleware('auth');
 // Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
 
-Route::get('/sarana/{sarana:slug}', function(){
-    return view('summary',[
-        'title'=>'Summary',
-        'active'=>'sarana',
-    ]);
-
-});
+// Route::get('/sarana/{sarana:slug}', function () {
+//     return view('summary', [
+//         'title' => 'Summary',
+//         'active' => 'sarana',
+//     ]);
+// });

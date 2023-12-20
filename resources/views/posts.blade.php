@@ -1,257 +1,243 @@
 @extends('layouts/main')
 
 @section('container')
-<main class="container p-0 mt-3 ">
-    <div id="carouselExampleCaptions" class="carousel slide">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <main class="container p-0 mt-3 ">
+        <div id="carouselExampleCaptions" class="carousel slide">
 
+            <div class="carousel-indicators">
+                @foreach ($posts->take(8) as $post)
+                    @if ($loop->iteration == 1)
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                            aria-current="true" aria-label="Slide 1"></button>
+                    @else
+                        <button type="button" data-bs-target="#carouselExampleCaptions"
+                            data-bs-slide-to="{{ $loop->iteration - 1 }}"
+                            aria-label="Slide {{ $loop->iteration }}"></button>
+                    @endif
+                @endforeach
+            </div>
+
+            <div class="carousel-inner">
+                @foreach ($posts->take(8) as $post)
+                    @if ($loop->iteration == 1)
+                        <div class="carousel-item active" style="height: 500px">
+                            @if (request()->is('posts') && !request()->has('category') && !request()->has('author'))
+                                <div class="position-absolute  px-3 py-2 text-white fs-5"
+                                    style="background-color: rgba(4, 74, 4, 0.7); z-index:99;">Semua Post
+                                </div>
+                            @elseif(request()->is('posts') && request()->has('category'))
+                                <div class="position-absolute  px-3 py-2 text-white"
+                                    style="background-color: rgba(4, 74, 4, 0.7); z-index:99;"><a
+                                        href="/posts?category={{ $post->category->slug }}"
+                                        class="text-decoration-none text-white fs-5  ">{{ $post->category->name }}</a>
+                                </div>
+                            @elseif(request()->is('posts') && request()->has('author'))
+                                <div class="position-absolute  px-3 py-2 text-white"
+                                    style="background-color: rgba(4, 74, 4, 0.7); z-index:99;"><a
+                                        href="/posts?category={{ $post->author->slug }}"
+                                        class="text-decoration-none text-white fs-5  ">Post Oleh: {{ $post->author->name }}</a>
+                                </div>
+                            @endif
+
+                            <img src="{{ asset('storage/' . $post->image) }}" class="d-block w-100 zoom-in-out"
+                                alt="..." style="margin-top: -100px;" data-aos="zoom-out" data-aos-duration="3000">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h3>{{ $post->title }}</h3>
+                            </div>
+                        </div>
+                    @else
+                        <div class="carousel-item" style="height: 500px;">
+                            @if (request()->is('posts') && !request()->has('category') && !request()->has('author'))
+                                <div class="position-absolute  px-3 py-2 text-white fs-5"
+                                    style="background-color: rgba(4, 74, 4, 0.7); z-index:99;">Semua Post
+                                </div>
+                            @elseif(request()->is('posts') && request()->has('category'))
+                                <div class="position-absolute  px-3 py-2 text-white"
+                                    style="background-color: rgba(4, 74, 4, 0.7); z-index:99;"><a
+                                        href="/posts?category={{ $post->category->slug }}"
+                                        class="text-decoration-none text-white fs-5  ">{{ $post->category->name }}</a>
+                                </div>
+                            @elseif(request()->is('posts') && request()->has('author'))
+                                <div class="position-absolute  px-3 py-2 text-white"
+                                    style="background-color: rgba(4, 74, 4, 0.7); z-index:99;"><a
+                                        href="/posts?category={{ $post->author->slug }}"
+                                        class="text-decoration-none text-white fs-5  ">Post Oleh: {{ $post->author->name }}</a>
+                                </div>
+                            @endif
+                            <img src="{{ asset('storage/' . $post->image) }}" class="d-block w-100 zoom-in-out"
+                                alt="..." style="margin-top: -100px;">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h3>{{ $post->title }}</h3>
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active" style="height: 500px">
-                <img src="{{ asset('img/melasti 2.jpg')}}" class="d-block w-100" alt="..." style="margin-top: -100px;" data-aos="zoom-out" data-aos-duration="3000">
-                <div class="carousel-caption d-none d-md-block">
-                    <h3>Upacara Melasti</h3>
+
+        @if ($posts->count())
+            <div class="container px-0 mx-0 my-3 ">
+                <div class="row my-3 px-0 mx-0 my-3 py-3 ">
+                    <div class="col-md-3 mx-0 px-1 col-sm-6 my-sm-2 card-kecil">
+                        <div
+                            style="height: 300px;
+                                        overflow: hidden;
+                                        position: relative;
+                                        background-image: url({{ asset('storage/' . $posts[0]->image) }});
+                                        background-repeat: no-repeat;
+                                        background-size: cover;
+                                        background-position: center;">
+                            <div class="text-white p-3 z-3 " style="position: absolute; margin-bottom:10px;">
+                                <h5 class="card-title fw-medium "><a href="/posts/{{ $posts[0]->slug }}"
+                                        class="text-decoration-none text-white ">{{ $posts[0]->title }}</a></h5>
+                                <p class="card-text my-1"><a href="/posts?category={{ $posts[0]->category->slug }}"
+                                        class="text-decoration-none text-white">{{ $posts[0]->category->name }}</a>
+                                </p>
+                                <p class="card-text my-1">Oleh: <a href="/posts?author={{ $posts[0]->author->username }}"
+                                        class="text-decoration-none text-white">{{ $posts[0]->author->name }}</a>
+                                </p>
+                                <p class="card-text"><small>{{ $posts[0]->created_at->diffForHumans() }}</small></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    @if (isset($posts[1]))
+                        <div class="col-md-3 mx-0 px-1 col-sm-6 my-sm-2 card-kecil">
+                            <div
+                                style="height: 300px;
+                                        overflow: hidden;
+                                        position: relative;
+                                        background-image: url({{ asset('storage/' . $posts[1]->image) }});
+                                        background-repeat: no-repeat;
+                                        background-size: cover;
+                                        background-position: center;">
+                                <div class="text-white p-3 z-3 " style="position: absolute; margin-bottom:10px;">
+                                    <h5 class="card-title fw-medium "><a href="/posts/{{ $posts[1]->slug }}"
+                                            class="text-decoration-none text-white ">{{ $posts[1]->title }}</a></h5>
+                                    <p class="card-text my-1"><a href="/posts?category={{ $posts[1]->category->slug }}"
+                                            class="text-decoration-none text-white">{{ $posts[1]->category->name }}</a>
+                                    </p>
+                                    <p class="card-text my-1">Oleh: <a
+                                            href="/posts?author={{ $posts[1]->author->username }}"
+                                            class="text-decoration-none text-white">{{ $posts[1]->author->name }}</a>
+                                    </p>
+                                    <p class="card-text"><small>{{ $posts[0]->created_at->diffForHumans() }}</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                    @if (isset($posts[2]))
+                        <div class="col-md-3 mx-0 px-1 col-sm-6 my-sm-2 card-kecil">
+                            <div
+                                style="height: 300px;
+                                        overflow: hidden;
+                                        position: relative;
+                                        background-image: url({{ asset('storage/' . $posts[2]->image) }});
+                                        background-repeat: no-repeat;
+                                        background-size: cover;
+                                        background-position: center;">
+                                <div class="text-white p-3 z-3 " style="position: absolute; margin-bottom:10px;">
+                                    <h5 class="card-title fw-medium "><a href="/posts/{{ $posts[2]->slug }}"
+                                            class="text-decoration-none text-white ">{{ $posts[2]->title }}</a></h5>
+                                    <p class="card-text my-1"><a href="/posts?category={{ $posts[2]->category->slug }}"
+                                            class="text-decoration-none text-white">{{ $posts[2]->category->name }}</a>
+                                    </p>
+                                    <p class="card-text my-1">Oleh: <a
+                                            href="/posts?author={{ $posts[2]->author->username }}"
+                                            class="text-decoration-none text-white">{{ $posts[2]->author->name }}</a>
+                                    </p>
+                                    <p class="card-text"><small>{{ $posts[0]->created_at->diffForHumans() }}</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                    @if (isset($posts[3]))
+                        <div class="col-md-3 mx-0 px-1 col-sm-6 my-sm-2 card-kecil">
+                            <div
+                                style="height: 300px;
+                                        overflow: hidden;
+                                        position: relative;
+                                        background-image: url({{ asset('storage/' . $posts[3]->image) }});
+                                        background-repeat: no-repeat;
+                                        background-size: cover;
+                                        background-position: center;">
+                                <div class="text-white p-3 z-3 " style="position: absolute; margin-bottom:10px;">
+                                    <h5 class="card-title fw-medium "><a href="/posts/{{ $posts[3]->slug }}"
+                                            class="text-decoration-none text-white ">{{ $posts[3]->title }}</a></h5>
+                                    <p class="card-text my-1"><a href="/posts?category={{ $posts[3]->category->slug }}"
+                                            class="text-decoration-none text-white">{{ $posts[3]->category->name }}</a>
+                                    </p>
+                                    <p class="card-text my-1">Oleh: <a
+                                            href="/posts?author={{ $posts[3]->author->username }}"
+                                            class="text-decoration-none text-white">{{ $posts[3]->author->name }}</a>
+                                    </p>
+                                    <p class="card-text"><small>{{ $posts[0]->created_at->diffForHumans() }}</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
-            <div class="carousel-item" style="height: 500px;">
-                <img src="{{ asset('img/pawiwahan 2.jpg') }}" class="d-block w-100" alt="..." style="margin-top: -100px;">
-                <div class="carousel-caption d-none d-md-block">
-                    <h3>Upacara Pawiwahan</h3>
+
+            <div class="container px-0 mx-0">
+                <div class="row my-3 px-0 mx-0 ">
+                    @foreach ($posts->skip(4) as $post)
+                        <div class="col-md-6 mx-0 px-1 ">
+                            <div class="card mb-3">
+                                <div class="row g-0">
+                                    <div class="col-md-5"
+                                        style="height: 340px;
+                                    overflow: hidden;
+                                    position: relative;
+                                    background-image: url({{ asset('storage/' . $post->image) }});
+                                    background-repeat: no-repeat;
+                                    background-size: cover;
+                                    background-position: center;">
+                                        <div class="position-absolute  px-3 py-2 text-white"
+                                            style="background-color: rgba(4, 74, 4, 0.7)"><a
+                                                href="/posts?category={{ $post->category->slug }}"
+                                                class="text-decoration-none text-white">{{ $post->category->name }}</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-7">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ $post->title }}</h5>
+                                            <p>Oleh: <a href="/posts?author={{ $post->author->username }}"
+                                                    class="text-decoration-none">{{ $post->author->name }}</a>
+                                            </p>
+                                            <p class="card-text">{{ $post->excerpt }}</p>
+                                            <p class="card-text"><small
+                                                    class="text-body-secondary">{{ $post->created_at->diffForHumans() }}</small>
+                                            </p>
+                                            <a href="/posts/{{ $post->slug }}" class="badge bg-success  ">Baca
+                                                Selengkapnya...</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
-            <div class="carousel-item" style="height: 500px;">
-                <img src="{{ asset('img/mepandes 2.jpg') }}" class="d-block w-100" alt="..." style="margin-top: -100px;">
-                <div class="carousel-caption d-none d-md-block">
-                    <h3>Upacara Mepandes</h3>
-                </div>
-            </div>
+        @else
+            <p class="text-center fs-4">No post Found.</p>
+        @endif
+        <div class="d-flex justify-content-center ">
+
+            {{ $posts->links() }}
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
+    </main>
 
-    <!-- <div class="container marketing">
-            
-            <div class="row">
-                <div class="col-lg-4">
-                    <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
-                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder"
-                        preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)" />
-                    </svg>
-                    <h2 class="fw-normal">Heading</h2>
-                    <p>
-                        Some representative placeholder content for the three columns of
-                        text below the carousel. This is the first column.
-                    </p>
-                    <p>
-                        <a class="btn btn-secondary" href="#">View details &raquo;</a>
-                    </p>
-                </div>
-               
-                <div class="col-lg-4">
-                    <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
-                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder"
-                        preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)" />
-                    </svg>
-                    <h2 class="fw-normal">Heading</h2>
-                    <p>
-                        Another exciting bit of representative placeholder content. This
-                        time, we've moved on to the second column.
-                    </p>
-                    <p>
-                        <a class="btn btn-secondary" href="#">View details &raquo;</a>
-                    </p>
-                </div>
-               
-                <div class="col-lg-4">
-                    <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
-                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder"
-                        preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)" />
-                    </svg>
-                    <h2 class="fw-normal">Heading</h2>
-                    <p>
-                        And lastly this, the third column of representative placeholder
-                        content.
-                    </p>
-                    <p>
-                        <a class="btn btn-secondary" href="#">View details &raquo;</a>
-                    </p>
-                </div>
-               
-            </div> -->
-
-
-    <!-- START THE FEATURETTES -->
-
-    <hr class="featurette-divider" />
-
-    <div class="row featurette">
-        <div class="col-md-7">
-            <h2 class="featurette-heading fw-normal lh-1">
-                Tradisi Ritual Pembakaran Jenazah di Bali
-            </h2>
-            <span class="text-body-secondary">13 Desember 2023</span>
-            <p class="lead">
-                Ngaben adalah upacara pembakaran jenazah umat Hindu di Bali. Upacara ngaben merupakan suatu ritual yang dilaksanakan untuk mengembalikan roh leluhur ke tempat asalnya.
-                Ngaben dalam Bahasa Bali berkonotasi halus yang sering disebut palebon.
-            </p>
-            <p>
-                <a class="btn btn-primary" href="#">Baca Selengkapnya</a>
-            </p>
-        </div>
-        <div class="col-md-5">
-            <img width="500" height="250" src="{{ asset('img/ngaben.jpg') }}" alt="Logo Mewali">
-            <!-- <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-                        width="500" height="250" xmlns="http://www.w3.org/2000/svg" role="img"
-                        aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" />
-                        <image href="{{ asset('img/ngaben.jpg') }}" width="100%" height="20em" />
-                    </svg> -->
-        </div>
-
-    </div>
-
-    <hr class="featurette-divider" />
-
-    <div class="row featurette">
-        <div class="col-md-7 order-md-2">
-            <h2 class="featurette-heading fw-normal lh-1">
-                Tradisi Penyucian Diri Menjelang Hari Raya Nyepi
-            </h2>
-            <span class="text-body-secondary">13 Desember 2023</span>
-            <p class="lead">
-                Upacara Melasti merupakan salah satu dari rangkaian perayaan Nyepi yang berlangsung sebelum hari raya Nyepi.
-                Upacara ini bisa diartikan sebagai ritual menghanyutkan kotoran alam menggunakan air kehidupan.
-            </p>
-            <p>
-                <a class="btn btn-primary" href="#">Baca Selengkapnya</a>
-            </p>
-        </div>
-        <div class="col-md-5 order-md-1">
-            <img width="500" height="250" src="{{ asset('img/melasti.jpg') }}" alt="Logo Mewali">
-            <!-- <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-                        width="500" height="250" xmlns="http://www.w3.org/2000/svg" role="img"
-                        aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" />
-                        <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">
-                            500x500
-                        </text>
-                    </svg> -->
-        </div>
-    </div>
-
-    <hr class="featurette-divider" />
-
-    <div class="row featurette">
-        <div class="col-md-7">
-            <h2 class="featurette-heading fw-normal lh-1">
-                Upacara Untuk Meningkatkan Ketajaman Pikiran
-            </h2>
-            <span class="text-body-secondary">13 Desember 2023</span>
-            <p class="lead">
-                Tumpek landep merupakan hari raya pemujaan kepada Ida Bhatara Sang Hyang Siwa Pasupati sebagai dewanya taksu. Hari raya Tumpek Landep sendiri merupakan rentetan setelah hari raya saraswati.
-            </p>
-            <p>
-                <a class="btn btn-primary" href="#">Baca Selengkapnya</a>
-            </p>
-        </div>
-        <div class="col-md-5">
-            <img width="500" height="250" src="{{ asset('img/tumpek landep.jpg') }}" alt="Logo Mewali">
-            <!-- <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-                        width="500" height="250" xmlns="http://www.w3.org/2000/svg" role="img"
-                        aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" />
-                        <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">
-                            500x500
-                        </text>
-                    </svg> -->
-        </div>
-    </div>
-
-    <hr class="featurette-divider" />
-
-    <div class="row featurette">
-        <div class="col-md-7 order-md-2">
-            <h2 class="featurette-heading fw-normal lh-1">
-                Upacara Potong Gigi di Bali
-            </h2>
-            <span class="text-body-secondary">13 Desember 2023</span>
-            <p class="lead">
-                Metatah atau Mepandes atau Mesangih adalah suatu prosesi keagamaan yang dilaksanakan sebagai penanda peralihan ke suatu tahapan kehidupan yang lebih berbahaya.
-            </p>
-            <p>
-                <a class="btn btn-primary" href="#">Baca Selengkapnya</a>
-            </p>
-        </div>
-        <div class="col-md-5 order-md-1">
-            <img width="500" height="250" src="{{ asset('img/mepandes.jpg') }}" alt="Logo Mewali">
-            <!-- <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-                        width="500" height="250" xmlns="http://www.w3.org/2000/svg" role="img"
-                        aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" />
-                        <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">
-                            500x500
-                        </text>
-                    </svg> -->
-        </div>
-    </div>
-
-    <hr class="featurette-divider" />
-
-    <div class="row featurette">
-        <div class="col-md-7">
-            <h2 class="featurette-heading fw-normal lh-1">
-                Tradisi Pernikahan Adat Hindu Di Bali
-            </h2>
-            <span class="text-body-secondary">13 Desember 2023</span>
-            <p class="lead">
-                Dalam umat Hindu Bali, dikenal istilah pawiwahan. Pawiwahan sejatinya merupakan ikatan suci dan komitmen sepanjang hidup menjadi suami dan istri,
-                serta merupakan ikatan sosial yang paling kuat yang ada antara laki-laki dan perempuan.
-            </p>
-            <p>
-                <a class="btn btn-primary" href="#">Baca Selengkapnya</a>
-            </p>
-        </div>
-        <div class="col-md-5">
-            <img width="500" height="250" src="{{ asset('img/pawiwahan.jpg') }}" alt="Logo Mewali">
-            <!-- <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-                        width="500" height="250" xmlns="http://www.w3.org/2000/svg" role="img"
-                        aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" />
-                        <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">
-                            500x500
-                        </text>
-                    </svg> -->
-        </div>
-    </div>
-
-    <hr class="featurette-divider" />
-
-    <!-- /END THE FEATURETTES -->
-    </div>
-    <!-- /.container -->
-</main>
 @endsection

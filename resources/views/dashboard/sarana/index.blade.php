@@ -32,7 +32,7 @@
                         <td>{{ $srn->nama_sarana }}</td>
                         <td>{{ $srn->nama_toko }}</td>
                         <td>{{ $srn->no_telepon }}</td>
-                        <td>{{ $srn->harga }}</td>
+                        <td>Rp. {{ number_format($srn->harga, 0, ',', '.') }}</td>
                         <td>
                             <a href="/dashboard/sarana/{{ $srn->slug }}" class="badge bg-success  "><i
                                     class="bi bi-eye-fill"></i></a>

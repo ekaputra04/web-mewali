@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use App\Models\PostCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardPostController extends Controller
 {
@@ -97,6 +98,13 @@ class DashboardPostController extends Controller
 
         $validatedData = $request->validate($rules);
 
+        if ($request->file('image')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $validatedData['image'] = $request->file('image')->store('post-images');
+        }
+
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 150, '...');
 
@@ -110,6 +118,10 @@ class DashboardPostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if ($post->image) {
+            Storage::delete($post->image);
+        }
+
         Post::destroy($post->id);
 
         return redirect('/dashboard/posts')->with('success', 'Post berhasil dihapus!');

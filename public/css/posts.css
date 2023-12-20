@@ -1,0 +1,41 @@
+.zoom-in-out {
+    overflow: hidden;
+    animation: zoomInOut 10s infinite alternate;
+}
+
+@keyframes zoomInOut {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+.card-kecil {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-kecil::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 95%;
+    height: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    transition: height 0.3s ease-in-out;
+    z-index: 1;
+    pointer-events: none;
+    left: 4px;
+    width: 97%;
+}
+
+.card-kecil:hover::before {
+    margin: auto;
+    height: 100%;
+    left: 4px;
+    width: 97%;
+}

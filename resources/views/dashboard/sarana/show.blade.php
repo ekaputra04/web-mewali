@@ -4,41 +4,85 @@
     <div class="container">
         <div class="row my-3">
             <div class="col-lg-8">
-                <article>
-                    <h2 class="mb-3">{{ $post['title'] }}</h2>
+                <h2 class="mb-3">{{ $sarana['title'] }}</h2>
 
-                    <a href="/dashboard/posts" class="btn btn-success  "><i class="bi bi-arrow-left"></i> Back to my
-                        posts</a>
-                    <a href="/dashboard/posts/{{ $post->slug }}/edit" class="btn btn-warning  "><i
-                            class="bi bi-pencil-square"></i> Edit</a>
-                    <form action="/dashboard/posts/{{ $post->slug }}" method="POST" class="d-inline ">
-                        @method('delete')
-                        @csrf
-                        <button class="btn btn-danger " onclick="return confirm('Yakin Menghapus Data?')"><i
-                                class="bi bi-x-circle"></i> Delete</button>
-                    </form>
+                <a href="/dashboard/sarana" class="btn btn-success  "><i class="bi bi-arrow-left"></i> Kembali ke Daftar
+                    Sarana</a>
+                <a href="/dashboard/sarana/{{ $sarana->slug }}/edit" class="btn btn-warning  "><i
+                        class="bi bi-pencil-square"></i> Edit</a>
+                <form action="/dashboard/sarana/{{ $sarana->slug }}" method="POST" class="d-inline ">
+                    @method('delete')
+                    @csrf
+                    <button class="btn btn-danger " onclick="return confirm('Yakin Menghapus Data?')"><i
+                            class="bi bi-x-circle"></i> Delete</button>
+                </form>
 
-                    <br><br>
+                <br><br>
 
-                    <a href="/post?category={{ $post->category->slug }}"
-                        class="mb-8 text-decoration-none">{{ $post->category->name }}</a>
+                <div class="card mb-3">
+                    <div
+                        style="height: 300px;
+                    overflow: hidden;
+                    position: relative;
+                    background-image: url({{ asset('storage/' . $sarana->image) }});
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    background-position: center;">
 
-                    @if ($post->image)
-                    <div style="max-height: 300px; justify-content: center; align-items: center; overflow: hidden; margin-bottom: 20px" >
-                        <img src="{{ asset('storage/' . $post->image) }}" class="card-img-top img-fluid my-3"
-                        alt="{{ $post->category->name }}">
-                    </div>                        
-                    @else
-                        <img src="https://source.unsplash.com/1200x800?{{ $post->category->name }}"
-                            class="card-img-top img-fluid my-3" alt="{{ $post->category->name }}">
-                    @endif
-
-                    {{-- tidak include htmlspecialchars --}}
-                    <div class="m-0" style="text-align: justify">
-
-                        {!! $post['body'] !!}
                     </div>
-                </article>
+                    <div class="card-body">
+                        <table class="table table-striped table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Subjek</th>
+                                    <th scope="col">Keterangan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Nama Sarana
+                                    </td>
+                                    <td>
+                                        {{ $sarana->nama_sarana }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Nama Toko
+                                    </td>
+                                    <td>
+                                        {{ $sarana->nama_toko }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Nomor Telepon
+                                    </td>
+                                    <td>
+                                        {{ $sarana->no_telepon }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Harga
+                                    </td>
+                                    <td>
+                                        {{ $sarana->harga }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Deskripsi
+                                    </td>
+                                    <td>
+                                        {{ $sarana->deskripsi }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

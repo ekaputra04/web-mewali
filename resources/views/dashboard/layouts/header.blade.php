@@ -3,10 +3,11 @@
       data-bs-theme="dark"
     >
       <a
-        class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white"
+        class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6  text-white fw-bold "
         href="/"
-        >My Web</a
+        ><span><img style="width: 3em;" src="{{ asset('img/logo-mewali.png') }}" alt="Logo Mewali"></span> Mewali</a
       >
+
 
       <ul class="navbar-nav flex-row d-md-none">
         <li class="nav-item text-nowrap">

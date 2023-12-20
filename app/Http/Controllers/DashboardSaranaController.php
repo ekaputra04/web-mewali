@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use App\Models\Sarana;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardSaranaController extends Controller
 {
@@ -24,9 +25,7 @@ class DashboardSaranaController extends Controller
      */
     public function create()
     {
-        return view('dashboard.sarana.create', [
-            'sarana' => Sarana::all(),
-        ]);
+        return view('dashboard.sarana.create');
     }
 
     /**
@@ -34,38 +33,91 @@ class DashboardSaranaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nama_sarana' => 'required|max:255',
+            'slug' => 'required|unique:saranas',
+            'nama_toko' => 'required',
+            'no_telepon' => 'required',
+            'harga' => 'required',
+            'deskripsi' => 'required',
+            'image' => 'image|file|max:2048',
+        ]);
+
+        if ($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('sarana-images');
+        }
+
+        $validatedData['deskripsi_singkat'] = Str::limit(strip_tags($request->deskripsi), 150, '...');
+
+        Sarana::create($validatedData);
+
+        return redirect('/dashboard/sarana')->with('success', 'Sarana baru berhasil dibuat!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Sarana $sarana)
     {
-        //
+        return view('dashboard.sarana.show', [
+            'sarana' => $sarana,
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Sarana $sarana)
     {
-        //
+        return view('dashboard.sarana.edit', [
+            'sarana' => $sarana
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Sarana $sarana)
     {
-        //
+        $rules = [
+            'nama_sarana' => 'required|max:255',
+            'nama_toko' => 'required',
+            'no_telepon' => 'required',
+            'harga' => 'required',
+            'deskripsi' => 'required',
+        ];
+
+        if ($request->slug != $sarana->slug) {
+            $rules['slug'] = 'required|unique:saranas';
+        }
+
+        $validatedData = $request->validate($rules);
+
+        if ($request->file('image')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $validatedData['image'] = $request->file('image')->store('sarana-images');
+        }
+
+        $validatedData['deskripsi_singkat'] = Str::limit(strip_tags($request->body), 150, '...');
+
+        Sarana::where('id', $sarana->id)->update($validatedData);
+
+        return redirect('/dashboard/sarana')->with('success', 'Sarana baru berhasil diupdate!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Sarana $sarana)
     {
-        //
+        if ($sarana->image) {
+            Storage::delete($sarana->image);
+        }
+
+        Sarana::destroy($sarana->id);
+
+        return redirect('/dashboard/sarana')->with('success', 'Sarana berhasil dihapus!');
     }
 }

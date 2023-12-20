@@ -18,7 +18,7 @@ class SaranaController extends Controller
             'title' => 'Semua Sarana',
             'active' => 'sarana',
             'sarana' => Sarana::latest()
-                ->filter(request(['search', 'sarana_category', 'author']))
+                ->filter(request(['search', 'sarana_category']))
                 ->paginate(7)
                 ->withQueryString(),
         ]);

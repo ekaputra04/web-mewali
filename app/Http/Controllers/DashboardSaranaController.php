@@ -47,7 +47,7 @@ class DashboardSaranaController extends Controller
             $validatedData['image'] = $request->file('image')->store('sarana-images');
         }
 
-        $validatedData['deskripsi_singkat'] = Str::limit(strip_tags($request->deskripsi), 150, '...');
+        $validatedData['deskripsi_singkat'] = Str::limit(strip_tags($request->deskripsi), 60, '...');
 
         Sarana::create($validatedData);
 
@@ -100,7 +100,7 @@ class DashboardSaranaController extends Controller
             $validatedData['image'] = $request->file('image')->store('sarana-images');
         }
 
-        $validatedData['deskripsi_singkat'] = Str::limit(strip_tags($request->body), 150, '...');
+        $validatedData['deskripsi_singkat'] = Str::limit(strip_tags($request->deskripsi), 30, '...');
 
         Sarana::where('id', $sarana->id)->update($validatedData);
 

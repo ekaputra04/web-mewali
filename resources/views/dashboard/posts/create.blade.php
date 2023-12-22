@@ -10,8 +10,8 @@
             @csrf
             <div class="mb-3">
                 <label for="title" class="form-label">Judul Artikel</label>
-                <input type="text" class="form-control @error('title') is-invalid  @enderror" id="title" name="title"
-                    required autofocus value="{{ old('title') }}">
+                <input type="text" class="form-control @error('title') is-invalid  @enderror" id="title"
+                    name="title" required autofocus value="{{ old('title') }}">
                 @error('title')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -42,7 +42,8 @@
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Masukkan Gambar</label>
-                <input class="form-control @error('image') is-invalid  @enderror" type="file" id="image" name="image">
+                <input class="form-control @error('image') is-invalid  @enderror" type="file" id="image"
+                    name="image">
                 @error('image')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -58,6 +59,8 @@
                 <trix-editor input="body"></trix-editor>
             </div>
             <button type="submit" class="btn btn-success mb-4 ">Buat Post</button>
+            <a href="/dashboard/posts" class="btn btn-warning  mb-4">Batal</a>
+
         </form>
     </div>
 

@@ -1,9 +1,0 @@
-@extends('layouts/main')
-
-@section('container')
-<!-- Scrollable modal -->
-<div class="modal-dialog modal-dialog-scrollable">
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum ipsum vitae nisi aspernatur quis. Praesentium minima debitis earum consequuntur ratione eligendi! Ducimus eius quia vero consectetur sit voluptas ut totam deleniti eveniet quas molestias officia ab adipisci esse et itaque sunt culpa dolore ullam, corporis accusamus nostrum! Accusantium, quos veniam eum necessitatibus autem similique dolorum neque nihil nisi sunt non veritatis repellat quaerat sint, laudantium velit cupiditate dolorem nobis eius. Corrupti esse dolores iusto numquam error quia fugit, commodi dignissimos similique earum dolorum, suscipit aliquam at exercitationem non cumque perspiciatis et cupiditate illum laborum? Ducimus consectetur voluptate esse eos dolor obcaecati? Aliquam officiis commodi fuga! Alias, ex saepe laborum repellendus ab, quibusdam voluptas delectus adipisci est sapiente voluptatibus laudantium voluptates fuga minima totam quo nobis ratione velit! Magnam iure, provident ut asperiores est aspernatur nam id, nisi laborum assumenda odit maiores deleniti nobis reprehenderit eligendi consectetur, repellat vitae fugit odio soluta totam inventore labore in. Dolorem, ex dignissimos quos harum amet esse optio earum ipsam laborum recusandae voluptas cumque rem quia praesentium soluta sint cum facilis, modi ab ad vitae iste officiis. Neque quae necessitatibus, alias deleniti praesentium harum voluptates, magni molestiae esse rem tempore placeat, vitae odio ipsa quisquam?
-
-</div>
-@endsection

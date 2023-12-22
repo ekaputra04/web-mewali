@@ -6,7 +6,7 @@
     </div>
 
     <div class="col-lg-8">
-        <form method="POST" action="/dashboard/sarana/{{ $sarana->slug }}">
+        <form method="POST" action="/dashboard/sarana/{{ $sarana->slug }}" enctype="multipart/form-data">
             @method('put')
             @csrf
             <div class="mb-3">
@@ -86,6 +86,7 @@
                 @enderror
             </div>
             <button type="submit" class="btn btn-success mb-4 ">Update Sarana</button>
+            <a href="/dashboard/sarana" class="btn btn-warning  mb-4">Batal</a>
         </form>
     </div>
 

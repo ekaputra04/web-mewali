@@ -1,10 +1,11 @@
 @extends('layouts/main')
 
 @section('container')
-    <main class="container mt-5 ">
-        <div class="p-0  mb-4 rounded align-items-end" id="thumbnail-home" data-aos="fade-up" data-aos-duration="1500" id="home">
+    <main class="container mt-3 ">
+        <div class="p-0  mb-4 rounded align-items-center position-relative" id="thumbnail-home" data-aos="fade-up" data-aos-duration="1500"
+            id="home">
 
-            <div class="col-lg-6 mt-5 p-5 fs-3">
+            <div class="position-absolute col-lg-6 p-5 fs-3 align-self-center " style="z-index:99;">
                 <h1 class="display-4 fst-italic text-white fw-bold">
                     Mewali
                 </h1>
@@ -12,211 +13,140 @@
                     Platform Penyedia Informasi dan Sarana Upacara Agama Hindu Bali.
                 </p>
             </div>
+
+            <img src="https://d2mo2a5fvrklap.cloudfront.net/app/uploads/sites/2/2022/07/13183332/uluwatu-moments-balinesesonganddance-desktop-2.jpg" alt="" class="d-block w-100 zoom-in-out">
         </div>
 
         <div data-aos="fade-up" data-aos-duration="1500">
             <a href="/posts" class="text-decoration-none text-black ">
                 <p class="fs-3 fw-medium ">
-                    Post
+                    Post <i class="bi bi-arrow-right"></i>
                 </p>
             </a>
         </div>
 
-        <div class="row mb-2" data-aos="fade-up" data-aos-duration="1500">
-                <div class="col-md-6">
-                    <div
-                        class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative ">
-                        <div class="col p-4 d-flex flex-column position-static w-50 ">
-                            <strong
-                                class="d-inline-block mb-2 text-primary-emphasis">Tes Kategori</strong>
-                            <h3 class="mb-0">Tes Judul</h3>
-                            <div class="my-1 text-body-secondary">Tes Tanggal</div>
-                            <p class="card-text mb-auto">
-                                Upacara Mepandes merupakan salah satu ritus sakral dalam agama Hindu di Bali yang menandai
-                                inisiasi atau pembaptisan anak-anak dalam kepercayaan Hindu.
-                            </p>
-                            <a href="/post" class="icon-link gap-1 icon-link-hover stretched-link">
-                                Lanjutkan Membaca
-                                <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
-                                    </svg>
-                                </span>
-                            </a>
-                        </div>
-                        <div class="col-auto d-lg-block w-50 h-100 overflow-hidden ">
-                            <img src="https://source.unsplash.com/500x750?balinese" alt="Balinese"
-                                class="overflow-hidden img-fluid ">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div
-                        class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative ">
-                        <div class="col p-4 d-flex flex-column position-static w-50 ">
-                            <strong class="d-inline-block mb-2 text-primary-emphasis">Manusa Yadnya</strong>
-                            <h3 class="mb-0">Upacara Mepandes</h3>
-                            <div class="my-1 text-body-secondary">Nov 12</div>
-                            <p class="card-text mb-auto">
-                                Upacara Mepandes merupakan salah satu ritus sakral dalam agama Hindu di Bali yang menandai
-                                inisiasi atau pembaptisan anak-anak dalam kepercayaan Hindu.
-                            </p>
-                            <a href="/post" class="icon-link gap-1 icon-link-hover stretched-link">
-                                Lanjutkan Membaca
-                                <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
-                                    </svg>
-                                </span>
-                            </a>
-                        </div>
-                        <div class="col-auto d-lg-block w-50 h-100 overflow-hidden ">
-                            <img src="https://source.unsplash.com/500x750?balinese" alt="Balinese"
-                                class="overflow-hidden img-fluid ">
+        <div class="container px-0 mx-0">
+            <div class="row my-3 px-0 mx-0">
+                @foreach ($posts as $post)
+                    <div class="col-md-6 mx-0 px-1 " data-aos="fade-up" data-aos-duration="1500">
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                                <div class="col-md-6">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ $post->title }}</h5>
+                                        <p>Oleh: <a href="/posts?author={{ $post->author->username }}"
+                                                class="text-decoration-none">{{ $post->author->name }}</a>
+                                        </p>
+                                        <p class="card-text">{{ $post->excerpt }}</p>
+                                        <p class="card-text"><small
+                                                class="text-body-secondary">{{ $post->created_at->diffForHumans() }}</small>
+                                        </p>
+                                        <a href="/posts/{{ $post->slug }}"
+                                            class="badge bg-success text-decoration-none ">Baca
+                                            Selengkapnya...</a>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 rounded-end "
+                                    style="height: 370px;
+                                overflow: hidden;
+                                position: relative;
+                                background-image: url({{ asset('storage/' . $post->image) }});
+                                background-repeat: no-repeat;
+                                background-size: cover;
+                                background-position: center;">
+                                    <div class="position-absolute  px-3 py-2 text-white"
+                                        style="background-color: rgba(4, 74, 4, 0.7)"><a
+                                            href="/posts?category={{ $post->category->slug }}"
+                                            class="text-decoration-none text-white">{{ $post->category->name }}</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-        </div>
-
-        <div data-aos="fade-up" data-aos-duration="1500">
-            <a href="/posts" class="text-decoration-none text-black ">
-                <p class="fs-3 fw-medium ">
-                    Sarana Upacara
-                    <!-- <span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                            class="bi bi-arrow-right" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
-                        </svg>
-                    </span> -->
-                </p>
-            </a>
-        </div>
-
-        <div class="row mb-2" data-aos="fade-up" data-aos-duration="1500">
-            <div class="col-md-6">
-                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                    <div class="col p-4 d-flex flex-column position-static">
-                        <strong class="d-inline-block mb-2 text-primary-emphasis">Manusa Yadnya</strong>
-                        <h3 class="mb-0">Banten Otonan</h3>
-                        <div class="my-1 text-body-secondary">UD Yadnya Kerthi</div>
-                        <p class="card-text mb-auto">
-                            Otonan asal katanya adalah “pawetuan”, yaitu peringatan hari lahir, di mana menurut tradisi
-                            agama Hindu di Bali otonan didasarkan pada Sapta wara, Panca wara, dan Wuku. Berbeda dengan hari
-                            ulang tahun pada umumnya. Dalam kalender Bali, otonan dirayakan tiap 210 hari (setiap 6 bulan
-                            Bali).
-                        </p>
-                        <a href="/sarana" class="icon-link gap-1 icon-link-hover stretched-link">
-                            Cek Detail Sarana
-                            <svg class="bi">
-                                <use xlink:href="#chevron-right" />
-                            </svg>
-                        </a>
-                    </div>
-                    <div class="col-auto d-lg-block w-50 h-100 overflow-hidden ">
-                        <img src="https://source.unsplash.com/500x750?balinese" alt="Balinese"
-                            class="overflow-hidden img-fluid ">
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                    <div class="col p-4 d-flex flex-column position-static">
-                        <strong class="d-inline-block mb-2 text-primary-emphasis">Manusa Yadnya</strong>
-                        <h3 class="mb-0">Banten Otonan</h3>
-                        <div class="my-1 text-body-secondary">UD Yadnya Kerthi</div>
-                        <p class="card-text mb-auto">
-                            Otonan asal katanya adalah “pawetuan”, yaitu peringatan hari lahir, di mana menurut tradisi
-                            agama Hindu di Bali otonan didasarkan pada Sapta wara, Panca wara, dan Wuku. Berbeda dengan hari
-                            ulang tahun pada umumnya. Dalam kalender Bali, otonan dirayakan tiap 210 hari (setiap 6 bulan
-                            Bali).
-                        </p>
-                        <a href="/sarana" class="icon-link gap-1 icon-link-hover stretched-link">
-                            Cek Detail Sarana
-                            <svg class="bi">
-                                <use xlink:href="#chevron-right" />
-                            </svg>
-                        </a>
-                    </div>
-                    <div class="col-auto d-lg-block w-50 h-100 overflow-hidden ">
-                        <img src="https://source.unsplash.com/500x750?balinese" alt="Balinese"
-                            class="overflow-hidden img-fluid ">
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
 
         <div data-aos="fade-up" data-aos-duration="1500">
-            <a href="/posts" class="text-decoration-none text-black ">
+            <a href="/sarana" class="text-decoration-none text-black ">
                 <p class="fs-3 fw-medium ">
-                    Paket Upacara
-                    <!-- <span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                            class="bi bi-arrow-right" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
-                        </svg>
-                    </span> -->
+                    Sarana Upacara <i class="bi bi-arrow-right"></i>
                 </p>
             </a>
         </div>
 
-        <div class="row mb-2" data-aos="fade-up" data-aos-duration="1500">
-            <div class="col-md-6">
-                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                    <div class="col p-4 d-flex flex-column position-static">
-                        <strong class="d-inline-block mb-2 text-primary-emphasis">Manusa Yadnya</strong>
-                        <h3 class="mb-0">Paket Mepandes</h3>
-                        <div class="my-1 text-body-secondary">Taman Prakerti Bhuana</div>
-                        <p class="card-text mb-auto">
-                            Gedung serbaguna megah dengan arsitektur bali modern yang telah dilengkapi dengan beragam
-                            fasilitas pendukung seperti lighting, dekorasi, sound system dan projector screen besar untuk
-                            mendukung resepsi pernikahan yang mewah, maupun beragam event lainnya.
-                        </p>
-                        <a href="/paket" class="icon-link gap-1 icon-link-hover stretched-link">
-                            Cek Detail Paket
-                            <svg class="bi">
-                                <use xlink:href="#chevron-right" />
-                            </svg>
-                        </a>
-                    </div>
-                    <div class="col-auto d-lg-block w-50 h-100 overflow-hidden ">
-                        <img src="https://source.unsplash.com/500x750?balinese" alt="Balinese"
-                            class="overflow-hidden img-fluid ">
-                    </div>
-                </div>
-            </div>
+        <div class="container px-0 mx-0">
+            <div class="row my-3 px-0 mx-0">
+                @foreach ($saranas as $sarana)
+                    <div class="col-md-6 mx-0 px-1 " data-aos="fade-up" data-aos-duration="1500">
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                                <div class="col-md-6 rounded-start  "
+                                    style="height: 200px;
+                                overflow: hidden;
+                                position: relative;
+                                background-image: url({{ asset('storage/' . $sarana->image) }});
+                                background-repeat: no-repeat;
+                                background-size: cover;
+                                background-position: center;">
+                                </div>
 
-            <div class="col-md-6">
-                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                    <div class="col p-4 d-flex flex-column position-static">
-                        <strong class="d-inline-block mb-2 text-primary-emphasis">Manusa Yadnya</strong>
-                        <h3 class="mb-0">Paket Mepandes</h3>
-                        <div class="my-1 text-body-secondary">Taman Prakerti Bhuana</div>
-                        <p class="card-text mb-auto">
-                            Gedung serbaguna megah dengan arsitektur bali modern yang telah dilengkapi dengan beragam
-                            fasilitas pendukung seperti lighting, dekorasi, sound system dan projector screen besar untuk
-                            mendukung resepsi pernikahan yang mewah, maupun beragam event lainnya.
-                        </p>
-                        <a href="/paket" class="icon-link gap-1 icon-link-hover stretched-link">
-                            Cek Detail Paket
-                            <svg class="bi">
-                                <use xlink:href="#chevron-right" />
-                            </svg>
-                        </a>
+                                <div class="col-md-6">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ $sarana->nama_sarana }}</h5>
+                                        <p class="card-text">Rp. {{ number_format($sarana->harga, 0, ',', '.') }}</p>
+                                        <p class="card-text">{{ $sarana->deskripsi }}</p>
+                                        <a href="/sarana" class="badge bg-success text-decoration-none ">Lihat
+                                            Selengkapnya...</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-auto d-lg-block w-50 h-100 overflow-hidden ">
-                        <img src="https://source.unsplash.com/500x750?balinese" alt="Balinese"
-                            class="overflow-hidden img-fluid ">
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
+
+        <div data-aos="fade-up" data-aos-duration="1500">
+            <a href="/paket" class="text-decoration-none text-black ">
+                <p class="fs-3 fw-medium ">
+                    Paket Upacara <i class="bi bi-arrow-right"></i>
+                </p>
+            </a>
+        </div>
+
+        <div class="container px-0 mx-0">
+            <div class="row my-3 px-0 mx-0">
+                @foreach ($saranas as $sarana)
+                    <div class="col-md-6 mx-0 px-1 " data-aos="fade-up" data-aos-duration="1500">
+                        <div class="card mb-3">
+                            <div class="row g-0">                                
+                                <div class="col-md-6">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ $sarana->nama_sarana }}</h5>
+                                        <p class="card-text">Rp. {{ number_format($sarana->harga, 0, ',', '.') }}</p>
+                                        <p class="card-text">{{ $sarana->deskripsi }}</p>
+                                        <a href="/sarana" class="badge bg-success text-decoration-none ">Lihat
+                                            Selengkapnya...</a>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 rounded-end  "
+                                    style="height: 200px;
+                                overflow: hidden;
+                                position: relative;
+                                background-image: url({{ asset('storage/' . $sarana->image) }});
+                                background-repeat: no-repeat;
+                                background-size: cover;
+                                background-position: center;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+
     </main>
 @endsection

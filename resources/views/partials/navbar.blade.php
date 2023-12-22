@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-success bg-gradient fixed-top d-block mb-5">
+<nav class="navbar navbar-expand-lg navbar-dark bg-success bg-gradient fixed-top d-block mb-3">
     <div class="container">
-        <a class="navbar-brand" href="/"><img style="width: 3em;" src="{{ asset('img/logo-mewali.png') }}" alt="Logo Mewali"></a>
+        <a class="navbar-brand p-0 " href="/"><img style="width: 2.5em;" src="{{ asset('img/logo-mewali.png') }}" alt="Logo Mewali"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -21,25 +21,6 @@
                     <a class="nav-link {{ $active === 'paket' ? 'active' : '' }}" href="/paket">Paket Upacara</a>
                 </li>                
             </ul>
-            {{-- <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-              <input
-                type="search"
-                class="form-control "
-                placeholder="Search..."
-                aria-label="Search"
-              />
-            </form> --}}
-
-            {{-- <div class="text-end">
-              <a href="/login">
-                <button type="button" class="btn btn-outline-light me-2">
-                  Login
-                </button>
-              </a>
-              <a href="/register">
-                <button type="button" class="btn btn-warning">Sign-up</button>
-              </a>
-            </div> --}}
 
             <ul class="navbar-nav ms-auto ">
               @auth

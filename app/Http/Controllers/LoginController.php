@@ -12,6 +12,7 @@ class LoginController extends Controller
     {
         return view('login.login', ['title' => 'login', 'active' => 'login']);
     }
+
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([

@@ -9,15 +9,15 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
-class DashboardPostController extends Controller
+class DashboardAllPostController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('dashboard.posts.index', [
-            'posts' => Post::latest()->where('user_id', auth()->user()->id)->get()
+        return view('dashboard.all-posts.index', [
+            'posts' => Post::latest()->get(),
         ]);
     }
 
@@ -61,7 +61,7 @@ class DashboardPostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('dashboard.posts.show', [
+        return view('dashboard.all-posts.show', [
             'post' => $post,
         ]);
     }
@@ -71,7 +71,7 @@ class DashboardPostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('dashboard.posts.edit', [
+        return view('dashboard.all-posts.edit', [
             'post' => $post,
             'categories' => PostCategory::all(),
         ]);
@@ -106,7 +106,7 @@ class DashboardPostController extends Controller
 
         Post::where('id', $post->id)->update($validatedData);
 
-        return redirect('/dashboard/posts')->with('success', 'Post berhasil diupdate!');
+        return redirect('/dashboard/all-posts')->with('success', 'Post berhasil diupdate!');
     }
 
     /**
@@ -120,6 +120,6 @@ class DashboardPostController extends Controller
 
         Post::destroy($post->id);
 
-        return redirect('/dashboard/posts')->with('success', 'Post berhasil dihapus!');
+        return redirect('/dashboard/all-posts')->with('success', 'Post berhasil dihapus!');
     }
 }

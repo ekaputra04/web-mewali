@@ -3,7 +3,6 @@
 @section('container')
     <main class="container p-0 mt-3 ">
         <div id="carouselExampleCaptions" class="carousel slide">
-
             <div class="carousel-indicators">
                 @foreach ($posts->take(8) as $post)
                     @if ($loop->iteration == 1)
@@ -35,7 +34,8 @@
                                 <div class="position-absolute  px-3 py-2 text-white"
                                     style="background-color: rgba(4, 74, 4, 0.7); z-index:99;"><a
                                         href="/posts?category={{ $post->author->slug }}"
-                                        class="text-decoration-none text-white fs-5  ">Post Oleh: {{ $post->author->name }}</a>
+                                        class="text-decoration-none text-white fs-5  ">Post Oleh:
+                                        {{ $post->author->name }}</a>
                                 </div>
                             @endif
 
@@ -61,11 +61,12 @@
                                 <div class="position-absolute  px-3 py-2 text-white"
                                     style="background-color: rgba(4, 74, 4, 0.7); z-index:99;"><a
                                         href="/posts?category={{ $post->author->slug }}"
-                                        class="text-decoration-none text-white fs-5  ">Post Oleh: {{ $post->author->name }}</a>
+                                        class="text-decoration-none text-white fs-5  ">Post Oleh:
+                                        {{ $post->author->name }}</a>
                                 </div>
                             @endif
                             <img src="{{ asset('storage/' . $post->image) }}" class="d-block w-100 zoom-in-out"
-                                alt="..." style="margin-top: -100px;">
+                                alt="...">
                             <div class="carousel-caption d-none d-md-block">
                                 <h3>{{ $post->title }}</h3>
                             </div>
@@ -84,6 +85,17 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
+        </div>
+
+        <div class="col-md-6 col-sm-12 position-relative  d-block mt-5 mx-auto "
+            style="margin-left: auto; margin-right: auto; z-index:999;">
+            <form action="/posts" method="GET" class="w-100 ">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search" name="search"
+                        value="{{ request('search') }}">
+                    <button class="btn btn-success " type="submit">Search</button>
+                </div>
+            </form>
         </div>
 
         @if ($posts->count())
@@ -221,7 +233,8 @@
                                             <p class="card-text"><small
                                                     class="text-body-secondary">{{ $post->created_at->diffForHumans() }}</small>
                                             </p>
-                                            <a href="/posts/{{ $post->slug }}" class="badge bg-success  ">Baca
+                                            <a href="/posts/{{ $post->slug }}"
+                                                class="badge bg-success text-decoration-none ">Baca
                                                 Selengkapnya...</a>
                                         </div>
                                     </div>

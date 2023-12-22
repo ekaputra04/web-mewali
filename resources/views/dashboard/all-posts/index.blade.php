@@ -2,7 +2,7 @@
 
 @section('container')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Artikel Saya</h1>
+        <h1 class="h2">Seluruh Artikel</h1>
     </div>
 
     @if (session()->has('success'))
@@ -13,7 +13,6 @@
     @endif
 
     <div class="table-responsive small">
-        <a href="/dashboard/posts/create" class="btn btn-success mb-3 ">Create New Post</a>
         <table class="table table-striped table-sm">
             <thead>
                 <tr>
@@ -32,13 +31,13 @@
                         <td>{{ $post->category->name }}</td>
                         <td>{{ $post->created_at->diffForHumans() }}</td>
                         <td>
-                            <a href="/dashboard/posts/{{ $post->slug }}" class="badge bg-success  "><i
+                            <a href="/dashboard/all-posts/{{ $post->slug }}" class="badge bg-success  "><i
                                     class="bi bi-eye-fill"></i></a>
 
-                            <a href="/dashboard/posts/{{ $post->slug }}/edit" class="badge bg-warning  "><i
+                            <a href="/dashboard/all-posts/{{ $post->slug }}/edit" class="badge bg-warning  "><i
                                     class="bi bi-pencil-square"></i></a>
 
-                            <form action="/dashboard/posts/{{ $post->slug }}" method="POST" class="d-inline ">
+                            <form action="/dashboard/all-posts/{{ $post->slug }}" method="POST" class="d-inline ">
                                 @method('delete')
                                 @csrf
                                 <button class="badge bg-danger border-0 "

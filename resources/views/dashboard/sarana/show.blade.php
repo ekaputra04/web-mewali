@@ -68,7 +68,7 @@
                                         Harga
                                     </td>
                                     <td>
-                                        {{ $sarana->harga }}
+                                        Rp. {{ number_format($sarana->harga, 0, ',', '.') }}
                                     </td>
                                 </tr>
                                 <tr>

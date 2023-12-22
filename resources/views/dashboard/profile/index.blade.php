@@ -29,7 +29,7 @@
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->username }}</td>
                         <td>{{ $item->email }}</td>
-                        <td>{{ $item->password }}</td>
+                        <td>********</td>
                         <td>
                             <a href="/dashboard/profile/{{ $item->username }}/edit" class="badge bg-warning  "><i
                                     class="bi bi-pencil-square"></i></a>

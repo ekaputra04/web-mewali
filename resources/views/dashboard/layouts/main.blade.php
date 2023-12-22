@@ -2,7 +2,7 @@
 <html lang="en" data-bs-theme="auto">
 
 <head>
-    <title>My Dashboard</title>
+    <title>Mewali | Dashboard</title>
     <script src="../assets/js/color-modes.js"></script>
 
     <meta charset="utf-8" />

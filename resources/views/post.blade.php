@@ -14,9 +14,7 @@
                             href="/posts?author={{ $post->author->username }}">{{ $post->author->name }}</a>
                     </p>
 
-
                     <div class="p-0 m-0 w-100  d-flex justify-content-center  ">
-
                         @if ($post->image)
                             <div style="max-height: 600px; justify-content: center; align-items: center; overflow: hidden;"
                                 class="mb-3 ">
@@ -47,6 +45,53 @@
                         <a class="btn btn-outline-secondary rounded-pill disabled" aria-disabled="true">Newer</a>
                     @endif
                 </nav>
+
+                <hr>
+
+                <p class="fs-4 fw-bolder fst-italic ">Tinggalkan Komentar</p>
+                <div class="card mt-3 p-3 ">
+                    <form action="/posts/comment" method="POST">
+                        @csrf
+                        <input type="hidden" name="post_id" value="{{ $post->id }}">
+                        <div class="mb-3">
+                            <label for="nama_user" class="form-label">Nama Lengkap</label>
+                            <input type="text" class="form-control @error('nama_user') is-invalid  @enderror"
+                                id="nama_user" name="nama_user" required autofocus value="{{ old('nama_user') }}"
+                                @auth placeholder="{{ auth()->user()->name }}"
+                                @else
+                                placeholder="Putu Bagus" @endauth>
+                            @error('nama_user')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="email_user" class="form-label">Email</label>
+                            <input type="text" class="form-control @error('email_user') is-invalid  @enderror" id="email_user"
+                                name="email_user" required autofocus value="{{ old('email_user') }}"
+                                @auth placeholder="{{ auth()->user()->email }}"
+                                @else
+                                placeholder="putu@gmail.com" @endauth>
+                            @error('email_user')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Pesan</label>
+                            <textarea class="form-control @error('pesan') is-invalid  @enderror" id="exampleFormControlTextarea1" rows="3"
+                                placeholder="Tinggalkan pesan..." required id="pesan" name="pesan"></textarea>
+                            @error('pesan')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <button type="submit" class="btn btn-success mb-4 ">Kirim</button>
+                    </form>
+                </div>
             </div>
 
             <div class="col-md-4">

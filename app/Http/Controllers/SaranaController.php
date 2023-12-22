@@ -15,7 +15,7 @@ class SaranaController extends Controller
     public function index()
     {
         return view('sarana', [
-            'title' => 'Semua Sarana',
+            'title' => 'Sarana Upacara',
             'active' => 'sarana',
             'saranas' => Sarana::latest()
                 ->filter(request(['search', 'sarana_category']))

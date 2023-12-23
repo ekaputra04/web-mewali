@@ -10,7 +10,7 @@
         </div>
         <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-1 text-muted ">
-                <span>Posts</span>
+                <span>Pengguna</span>
             </h6>
             <ul class="nav flex-column">
                 <li class="nav-item">
@@ -27,15 +27,15 @@
                         <svg class="bi">
                             <use xlink:href="#file-earmark" />
                         </svg>
-                        Post Saya
+                        Artikel Saya
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('dashboard/komentar') ? 'active' : '' }}" href="/dashboard/sarana">
+                    <a class="nav-link {{ Request::is('dashboard/comments') ? 'active' : '' }}" href="/dashboard/comments">
                         <svg class="bi">
                             <use xlink:href="#file-earmark" />
                         </svg>
-                        Komentar Post
+                        Komentar Artikel
                     </a>
                 </li>
             </ul>
@@ -51,15 +51,23 @@
                             <svg class="bi">
                                 <use xlink:href="#file-earmark" />
                             </svg>
-                            Seluruh Post
+                            Seluruh Artikel
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('dashboard/posts-category') ? 'active' : '' }}" href="/dashboard/sarana">
+                        <a class="nav-link {{ Request::is('dashboard/all-comments') ? 'active' : '' }}" href="/dashboard/all-comments">
                             <svg class="bi">
                                 <use xlink:href="#file-earmark" />
                             </svg>
-                            Kategori Post
+                            Seluruh Komentar
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('dashboard/posts-categories') ? 'active' : '' }}" href="/dashboard/posts-categories">
+                            <svg class="bi">
+                                <use xlink:href="#file-earmark" />
+                            </svg>
+                            Kategori Artikel
                         </a>
                     </li>
                     <li class="nav-item">

@@ -16,7 +16,7 @@
 
                     <div class="p-0 m-0 w-100  d-flex justify-content-center  ">
                         @if ($post->image)
-                            <div style="max-height: 600px; justify-content: center; align-items: center; overflow: hidden;"
+                            <div style="max-height: 600px; justify-content: center; align-items: center; overflow: hidden; width: 100%;"
                                 class="mb-3 ">
                                 <img src="{{ asset('storage/' . $post->image) }}" class="card-img-top img-fluid my-3"
                                     alt="{{ $post->category->name }}">
@@ -48,11 +48,19 @@
 
                 <hr>
 
+                @if (session()->has('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+                
                 <p class="fs-4 fw-bolder fst-italic ">Tinggalkan Komentar</p>
                 <div class="card mt-3 p-3 ">
                     <form action="/posts/comment" method="POST">
                         @csrf
                         <input type="hidden" name="post_id" value="{{ $post->id }}">
+                        <input type="hidden" name="slug" value="{{ $post->slug }}">
                         <div class="mb-3">
                             <label for="nama_user" class="form-label">Nama Lengkap</label>
                             <input type="text" class="form-control @error('nama_user') is-invalid  @enderror"
@@ -68,8 +76,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="email_user" class="form-label">Email</label>
-                            <input type="text" class="form-control @error('email_user') is-invalid  @enderror" id="email_user"
-                                name="email_user" required autofocus value="{{ old('email_user') }}"
+                            <input type="text" class="form-control @error('email_user') is-invalid  @enderror"
+                                id="email_user" name="email_user" required autofocus value="{{ old('email_user') }}"
                                 @auth placeholder="{{ auth()->user()->email }}"
                                 @else
                                 placeholder="putu@gmail.com" @endauth>
@@ -128,7 +136,6 @@
                                     </a>
                                 </li>
                             @endforeach
-
                         </ul>
                     </div>
                 </div>

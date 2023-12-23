@@ -14,6 +14,6 @@ class Comment extends Model
 
     public function inPost()
     {
-        return $this->belongsTo(PostCategory::class, 'post_id');
+        return $this->belongsTo(Post::class, 'post_id');
     }
 }

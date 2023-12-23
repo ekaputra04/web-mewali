@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreCommentRequest;
-use App\Http\Requests\UpdateCommentRequest;
+use Illuminate\Http\Request;
 
-class CommentController extends Controller
+class DashboardAllCommentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('dashboard.all-comments.index', [
+            'comments' => Comment::latest()->get(),
+        ]);
     }
 
     /**
@@ -31,18 +31,7 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-        $validatedData = $request->validate([
-            'nama_user' => 'required|max:64',
-            'email_user' => 'required|max:200',
-            'pesan' => 'required',
-            'post_id' => 'required'
-        ]);
-
-
-        Comment::create($validatedData);
-
-        return redirect("/posts/{$request->slug}")->with('success', 'Komentar berhasil dikirim!');
+        //
     }
 
     /**
@@ -64,7 +53,7 @@ class CommentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCommentRequest $request, Comment $comment)
+    public function update(Request $request, Comment $comment)
     {
         //
     }
@@ -72,8 +61,10 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Comment $comment)
+    public function destroy(Comment $comment, Request $request)
     {
-        //
+        Comment::destroy($request->id);
+
+        return redirect('/dashboard/all-comments')->with('success', 'Komentar berhasil dihapus!');
     }
 }

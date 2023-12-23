@@ -11,7 +11,10 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardPostController;
 use App\Http\Controllers\DashboardSaranaController;
 use App\Http\Controllers\DashboardAllPostController;
+use App\Http\Controllers\DashboardCommentController;
 use App\Http\Controllers\DashboardProfileController;
+use App\Http\Controllers\DashboardAllCommentController;
+use App\Http\Controllers\DashboardPostCategoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +71,22 @@ Route::resource(
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
 Route::resource('/dashboard/all-posts', DashboardAllPostController::class)->middleware('admin');
 Route::resource('/dashboard/sarana', DashboardSaranaController::class)->middleware('admin');
+Route::resource('/dashboard/comments', DashboardCommentController::class)->middleware('auth');
+// Route::delete('/dashboard/comments/{comment}', [DashboardCommentController::class, 'destroy'])->middleware('auth');
+Route::resource('/dashboard/all-comments', DashboardAllCommentController::class)->middleware('admin');
+// Route::delete('/dashboard/all-comments/{comment}', [DashboardAllCommentController::class, 'destroy'])->middleware('auth');
+
+// Route::resource('/dashboard/posts-categories', DashboardPostCategoriesController::class)->middleware('admin');
+Route::get('/dashboard/posts-categories', [DashboardPostCategoriesController::class, 'index'])->middleware('admin');
+Route::get('/dashboard/posts-categories/create', [DashboardPostCategoriesController::class, 'create'])->middleware('admin');
+Route::post('/dashboard/posts-categories', [DashboardPostCategoriesController::class, 'store'])->middleware('admin');
+Route::get('/dashboard/posts-categories/{postCategory}/edit', [DashboardPostCategoriesController::class, 'edit'])->middleware('admin');
+Route::put('/dashboard/posts-categories/{postCategory}', [DashboardPostCategoriesController::class, 'update'])->middleware('admin');
+Route::delete('/dashboard/posts-categories/{postCategory}', [DashboardPostCategoriesController::class, 'destroy'])->middleware('admin');
+
+// Route::middleware(['admin'])->group(function () {
+//     Route::resource('/dashboard/posts-categories', DashboardPostCategoriesController::class);
+// });
 
 Route::post('/posts/comment', [CommentController::class, 'store']);
 

@@ -17,6 +17,7 @@ use App\Http\Controllers\DashboardCommentController;
 use App\Http\Controllers\DashboardProfileController;
 use App\Http\Controllers\DashboardAllCommentController;
 use App\Http\Controllers\DashboardPostCategoriesController;
+use App\Http\Controllers\DetailPaketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -96,3 +97,6 @@ Route::put('/dashboard/posts-categories/{postCategory}', [DashboardPostCategorie
 Route::delete('/dashboard/posts-categories/{postCategory}', [DashboardPostCategoriesController::class, 'destroy'])->middleware('admin');
 
 Route::resource('/dashboard/users', DashboardUserController::class)->middleware('admin');
+
+//detailpaket
+Route::get('/detailpaket', [DetailPaketController::class, 'viewdetailpaket']);

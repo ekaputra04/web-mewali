@@ -1,45 +1,82 @@
 @extends('layouts/main')
 
 @section('container')
-    <main>
-        <section class="py-5 text-center container">
-            <div class="row ">
-                <div class="col-lg-6 col-md-8 mx-auto">
-                    <h1 class="fw-light">Paket Upacara</h1>
-                    <p class="lead text-body-secondary">Website <b>Mewali</b> menyediakan pilihan paket upacara yang lengkap dan praktis, namun tidak mengurangi makna dari upacara itu sendiri.</p>
-                </div>
-            </div>
-        </section>
+    <main class="m-0 p-0 ">
+        {{-- <div style="background-color: white; overflow: hidden; display: flex; align-items: center; justify-content: center; ">
+            <img src="{{ asset('img/melasti 2.jpg') }}" class="d-block img-fluid" style="object-fit: cover; width: 100%; height: 300px;" data-aos="fade-up" data-aos-duration="1500" alt="...">
+        </div> --}}
 
-        <div class="album ">
-            <div class="container">
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                    {{-- foreach --}}
-                    <div class="col">
-                        <div class="card shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                                xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                                preserveAspectRatio="xMidYMid slice" focusable="false">
-                                <title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                                    dy=".3em">Thumbnail</text>
-                            </svg>
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                    additional content. This content is a little bit longer.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-body-secondary">9 mins</small>
-                                </div>
-                            </div>
+        <div>
+            <h1 class="mt-3">Paket Metatah</h1>
+            <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="{{ asset('img/melasti 2.jpg') }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Metatah Gold</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                           <a href="/detailpaket"><button type="button" class="btn btn-primary btn-sm">Detail Paket</button></a> 
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-body-secondary">UD. Rahayu</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="{{ asset('img/melasti 2.jpg') }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Metatah Silver</h5>
+                            <p class="card-text">This card has supporting text below as a natural lead-in to additional
+                                content.</p>
+                                <a href="/detailpaket"><button type="button" class="btn btn-primary btn-sm">Detail Paket</button></a>                         </div>
+                        <div class="card-footer">
+                            <small class="text-body-secondary">UD. Berkah Sejati</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="{{ asset('img/melasti 2.jpg') }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Metatah Bronze</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This card has even longer content than the first to show that equal
+                                height action.</p>
+                                <a href="/detailpaket"><button type="button" class="btn btn-primary btn-sm">Detail Paket</button></a>                         </div>
+                        <div class="card-footer">
+                            <small class="text-body-secondary">UD. Bhuana</small>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        {{-- <div class="row container ">
+            <div
+                style="width: 1000px; height: 100px
+                                    overflow: hidden;
+                                    position: relative;
+                                    background-image: url({{ asset('img/melasti 2.jpg') }});
+                                    background-repeat: no-repeat;
+                                    background-size: cover;
+                                    background-position: center; z-index:99;">
+                <div class="text-white p-3 z-3 " style="position: absolute; margin-bottom:10px;">
+                    <h5 class="card-title fw-medium "><a href="/posts/" class="text-decoration-none text-white ">Metatah</a>
+                    </h5>
+                </div>
+            </div>
+        </div> --}}
+
+        {{-- <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+                role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Thumbnail</title>
+                <image href="{{ asset('img/melasti 2.jpg') }}" class="d-block" style="margin-top: -100px;" alt="...">
+            </svg>
+        </div> --}}
+
 
     </main>
 @endsection

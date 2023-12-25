@@ -7,8 +7,7 @@
                 <article>
                     <h2 class="mb-3">{{ $post['title'] }}</h2>
 
-                    <a href="/dashboard/posts" class="btn btn-success  "><i class="bi bi-arrow-left"></i> Back to my
-                        posts</a>
+                    <a href="/dashboard/posts" class="btn btn-success  "><i class="bi bi-arrow-left"></i> Kembali ke daftar artikel</a>
                     <a href="/dashboard/posts/{{ $post->slug }}/edit" class="btn btn-warning  "><i
                             class="bi bi-pencil-square"></i> Edit</a>
                     <form action="/dashboard/posts/{{ $post->slug }}" method="POST" class="d-inline ">
@@ -20,12 +19,11 @@
 
                     <br><br>
 
-                    <a href="/post?category={{ $post->category->slug }}"
-                        class="mb-8 text-decoration-none">{{ $post->category->name }}</a>
+                    <p>{{ $post->category->name }}</p>
 
                     @if ($post->image)
-                    <div style="max-height: 300px; justify-content: center; align-items: center; overflow: hidden; margin-bottom: 20px" >
-                        <img src="{{ asset('storage/' . $post->image) }}" class="card-img-top img-fluid my-3"
+                    <div style="width: 100%; justify-content: center; align-items: center; overflow: hidden; margin-bottom: 20px" >
+                        <img src="{{ asset('storage/' . $post->image) }}" class="card-img-top img-fluid my-3 w-100 "
                         alt="{{ $post->category->name }}">
                     </div>                        
                     @else

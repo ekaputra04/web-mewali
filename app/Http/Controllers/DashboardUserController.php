@@ -6,15 +6,15 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class DashboardProfileController extends Controller
+class DashboardUserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('dashboard.profile.index', [
-            'profile' => User::where('id', auth()->user()->id)->get(),
+        return view('dashboard.users.index', [
+            'users' => User::latest()->get(),
         ]);
     }
 
@@ -23,7 +23,7 @@ class DashboardProfileController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.users.create');
     }
 
     /**
@@ -31,7 +31,16 @@ class DashboardProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|min:3|max:64',
+            'username' => 'required|min:3|max:64|unique:users|regex:/^[a-zA-Z0-9]+$/',
+            'email' => 'required|max:255|unique:users|email:dns|regex:/^[^\s]+$/',
+            'password' => 'required|min:8|max:255'
+        ]);
+
+        User::create($validatedData);
+
+        return redirect('/dashboard/users')->with('success', 'Akun pengguna baru berhasil dibuat!');
     }
 
     /**
@@ -47,9 +56,8 @@ class DashboardProfileController extends Controller
      */
     public function edit(User $user)
     {
-        // dd($user->username);
-        return view('dashboard.profile.edit', [
-            'user' => User::where('id', auth()->user()->id)->get(),
+        return view('dashboard.users.edit', [
+            'user' => $user
         ]);
     }
 
@@ -58,32 +66,30 @@ class DashboardProfileController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $userLogin = auth()->user();
         $rules = [
             'name' => 'required|max:64',
             'email' => 'required|max:255|email:dns',
             'password' => 'required|max:255|min:8'
         ];
 
-        if ($request->username != $userLogin->username) {
+        if ($request->username != $user->username) {
             $rules['username'] = 'required|max:64|unique:users|min:3|regex:/^[a-zA-Z0-9]+$/';
         }
 
         $validatedData = $request->validate($rules);
 
-        $validatedData['password'] = bcrypt($validatedData['password']);
+        User::where('id', $request->id)->update($validatedData);
 
-
-        User::where('id', $userLogin->id)->update($validatedData);
-
-        return redirect('/dashboard/profile')->with('success', 'Data baru berhasil diupdate!');
+        return redirect('/dashboard/users')->with('success', 'Profile pengguna berhasil diupdate!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy(User $user, Request $request)
     {
-        //
+        User::destroy($request->id);
+
+        return redirect('/dashboard/users')->with('success', 'Akun pengguna berhasil dihapus!');
     }
 }

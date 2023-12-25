@@ -227,12 +227,6 @@
 
     <script src="/js/dashboard.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            // Tampilkan toast saat halaman dimuat
-            $('.toast').toast('show');
-        });
-    </script>
 
 </body>
 

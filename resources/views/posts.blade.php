@@ -22,19 +22,19 @@
                         <div class="carousel-item active" style="height: 500px">
                             @if (request()->is('posts') && !request()->has('category') && !request()->has('author'))
                                 <div class="position-absolute  px-3 py-2 text-white fs-5"
-                                    style="background-color: rgba(4, 74, 4, 0.7); z-index:99;">Semua Post
+                                    style="background-color: rgba(4, 74, 4, 0.7); z-index:99;">Semua Artikel
                                 </div>
                             @elseif(request()->is('posts') && request()->has('category'))
                                 <div class="position-absolute  px-3 py-2 text-white"
                                     style="background-color: rgba(4, 74, 4, 0.7); z-index:99;"><a
                                         href="/posts?category={{ $post->category->slug }}"
-                                        class="text-decoration-none text-white fs-5  ">{{ $post->category->name }}</a>
+                                        class="text-decoration-none text-white fs-5  ">Kategori {{ $post->category->name }}</a>
                                 </div>
                             @elseif(request()->is('posts') && request()->has('author'))
                                 <div class="position-absolute  px-3 py-2 text-white"
                                     style="background-color: rgba(4, 74, 4, 0.7); z-index:99;"><a
                                         href="/posts?category={{ $post->author->slug }}"
-                                        class="text-decoration-none text-white fs-5  ">Post Oleh:
+                                        class="text-decoration-none text-white fs-5  ">Artikel Oleh:
                                         {{ $post->author->name }}</a>
                                 </div>
                             @endif
@@ -91,9 +91,9 @@
             style="margin-left: auto; margin-right: auto; z-index:999;">
             <form action="/posts" method="GET" class="w-100 ">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Search" name="search"
+                    <input type="text" class="form-control" placeholder="Cari Artikel..." name="search"
                         value="{{ request('search') }}">
-                    <button class="btn btn-success " type="submit">Search</button>
+                    <button class="btn btn-success " type="submit">Cari</button>
                 </div>
             </form>
         </div>
@@ -245,10 +245,10 @@
                 </div>
             </div>
         @else
-            <p class="text-center fs-4">No post Found.</p>
+            <p class="text-center fs-4">Artikel Tidak Tersedia.</p>
         @endif
+        
         <div class="d-flex justify-content-center ">
-
             {{ $posts->links() }}
         </div>
     </main>

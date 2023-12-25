@@ -26,7 +26,7 @@ class DashboardAllPostController extends Controller
      */
     public function create()
     {
-        return view('dashboard.posts.create', [
+        return view('dashboard.all-posts.create', [
             'categories' => PostCategory::all(),
         ]);
     }
@@ -53,7 +53,7 @@ class DashboardAllPostController extends Controller
 
         Post::create($validatedData);
 
-        return redirect('/dashboard/posts')->with('success', 'Post baru berhasil dibuat!');
+        return redirect('/dashboard/all-posts')->with('success', 'Post baru berhasil dibuat!');
     }
 
     /**

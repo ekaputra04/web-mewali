@@ -10,81 +10,86 @@
                         langsung terhubung ke penjual.</p>
                     <form action="/sarana" method="GET">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Search" name="search"
+                            <input type="text" class="form-control" placeholder="Cari Sarana..." name="search"
                                 value="{{ request('search') }}">
-                            <button class="btn btn-success " type="submit">Search</button>
+                            <button class="btn btn-success " type="submit">Cari</button>
                         </div>
                     </form>
-
                 </div>
+
                 <div class="col-md-6 ">
-                    <div id="carouselExampleCaptions" class="carousel slide ">
-                        <div class="carousel-indicators">
-                            @foreach ($saranas->take(9) as $sarana)
-                                @if ($loop->iteration == 1)
-                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
-                                        class="active" aria-current="true" aria-label="Slide 1"></button>
-                                @else
-                                    <button type="button" data-bs-target="#carouselExampleCaptions"
-                                        data-bs-slide-to="{{ $loop->iteration - 1 }}"
-                                        aria-label="Slide {{ $loop->iteration }}"></button>
-                                @endif
-                            @endforeach
-                        </div>
+                    @if ($saranas->count())
+                        <div id="carouselExampleCaptions" class="carousel slide ">
+                            <div class="carousel-indicators">
+                                @foreach ($saranas->take(9) as $sarana)
+                                    @if ($loop->iteration == 1)
+                                        <button type="button" data-bs-target="#carouselExampleCaptions"
+                                            data-bs-slide-to="0" class="active" aria-current="true"
+                                            aria-label="Slide 1"></button>
+                                    @else
+                                        <button type="button" data-bs-target="#carouselExampleCaptions"
+                                            data-bs-slide-to="{{ $loop->iteration - 1 }}"
+                                            aria-label="Slide {{ $loop->iteration }}"></button>
+                                    @endif
+                                @endforeach
+                            </div>
 
-                        <div class="carousel-inner">
-                            @foreach ($saranas->take(9) as $sarana)
-                                @if ($loop->iteration == 1)
-                                    <div class="carousel-item active" style="height: 250px">
-                                        @if (request()->is('saranas') && !request()->has('category') && !request()->has('author'))
-                                            <div class="position-absolute  px-3 py-2 text-white fs-5"
-                                                style="background-color: rgba(4, 74, 4, 0.7); z-index:99;">Semua sarana
-                                            </div>
-                                        @elseif(request()->is('saranas') && request()->has('category'))
-                                            <div class="position-absolute  px-3 py-2 text-white"
-                                                style="background-color: rgba(4, 74, 4, 0.7); z-index:99;"><a
-                                                    href="/saranas?category={{ $sarana->category->slug }}"
-                                                    class="text-decoration-none text-white fs-5  ">{{ $sarana->category->name }}</a>
-                                            </div>
-                                        @elseif(request()->is('saranas') && request()->has('author'))
-                                            <div class="position-absolute  px-3 py-2 text-white"
-                                                style="background-color: rgba(4, 74, 4, 0.7); z-index:99;"><a
-                                                    href="/saranas?category={{ $sarana->author->slug }}"
-                                                    class="text-decoration-none text-white fs-5  ">sarana Oleh:
-                                                    {{ $sarana->author->name }}</a>
-                                            </div>
-                                        @endif
+                            <div class="carousel-inner">
+                                @foreach ($saranas->take(9) as $sarana)
+                                    @if ($loop->iteration == 1)
+                                        <div class="carousel-item active" style="height: 250px">
+                                            @if (request()->is('saranas') && !request()->has('category') && !request()->has('author'))
+                                                <div class="position-absolute  px-3 py-2 text-white fs-5"
+                                                    style="background-color: rgba(4, 74, 4, 0.7); z-index:99;">Semua sarana
+                                                </div>
+                                            @elseif(request()->is('saranas') && request()->has('category'))
+                                                <div class="position-absolute  px-3 py-2 text-white"
+                                                    style="background-color: rgba(4, 74, 4, 0.7); z-index:99;"><a
+                                                        href="/saranas?category={{ $sarana->category->slug }}"
+                                                        class="text-decoration-none text-white fs-5  ">{{ $sarana->category->name }}</a>
+                                                </div>
+                                            @elseif(request()->is('saranas') && request()->has('author'))
+                                                <div class="position-absolute  px-3 py-2 text-white"
+                                                    style="background-color: rgba(4, 74, 4, 0.7); z-index:99;"><a
+                                                        href="/saranas?category={{ $sarana->author->slug }}"
+                                                        class="text-decoration-none text-white fs-5  ">sarana Oleh:
+                                                        {{ $sarana->author->name }}</a>
+                                                </div>
+                                            @endif
 
-                                        <img src="{{ asset('storage/' . $sarana->image) }}"
-                                            class="d-block w-100 zoom-in-out" alt="..." style="margin-top: -100px;"
-                                            data-aos="zoom-out" data-aos-duration="3000">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <h3>{{ $sarana->nama_sarana }}</h3>
+                                            <img src="{{ asset('storage/' . $sarana->image) }}"
+                                                class="d-block w-100 zoom-in-out" alt="..." style="margin-top: -100px;"
+                                                data-aos="zoom-out" data-aos-duration="3000">
+                                            <div class="carousel-caption d-none d-md-block">
+                                                <h3>{{ $sarana->nama_sarana }}</h3>
+                                            </div>
                                         </div>
-                                    </div>
-                                @else
-                                    <div class="carousel-item" style="height: 250px;">
-                                        <img src="{{ asset('storage/' . $sarana->image) }}"
-                                            class="d-block w-100 zoom-in-out" alt="...">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <h3>{{ $sarana->nama_sarana }}</h3>
+                                    @else
+                                        <div class="carousel-item" style="height: 250px;">
+                                            <img src="{{ asset('storage/' . $sarana->image) }}"
+                                                class="d-block w-100 zoom-in-out" alt="...">
+                                            <div class="carousel-caption d-none d-md-block">
+                                                <h3>{{ $sarana->nama_sarana }}</h3>
+                                            </div>
                                         </div>
-                                    </div>
-                                @endif
-                            @endforeach
-                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
 
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    @else
+                        <p class="text-center fs-4 align-items-center mt-5 ">Sarana Tidak Tersedia.</p>
+                    @endif
                 </div>
             </div>
         </section>
@@ -141,7 +146,6 @@
             {{ $saranas->links() }}
         </div>
 
-
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">
@@ -173,7 +177,6 @@
                 </div>
             </div>
         </div>
-
     </main>
 
     <script>

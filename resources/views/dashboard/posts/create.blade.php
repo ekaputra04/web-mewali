@@ -2,7 +2,7 @@
 
 @section('container')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Buat Post Baru</h1>
+        <h1 class="h2">Buat Artikel Baru</h1>
     </div>
 
     <div class="col-lg-8">
@@ -42,8 +42,9 @@
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Masukkan Gambar</label>
+                <img class="img-preview img-fluid mb-3 col-sm-6 ">
                 <input class="form-control @error('image') is-invalid  @enderror" type="file" id="image"
-                    name="image">
+                    name="image" onChange="previewImage()">
                 @error('image')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -58,7 +59,7 @@
                 <input id="body" type="hidden" name="body" value="{{ old('body') }}">
                 <trix-editor input="body"></trix-editor>
             </div>
-            <button type="submit" class="btn btn-success mb-4 ">Buat Post</button>
+            <button type="submit" class="btn btn-success mb-4 ">Buat Artikel</button>
             <a href="/dashboard/posts" class="btn btn-warning  mb-4">Batal</a>
 
         </form>
@@ -76,6 +77,21 @@
 
         document.addEventListener('trix-file-accept', function(e) {
             e.preventDefault();
-        })
+        });
+
+        // menampilkan gambar
+        function previewImage() {
+            const image = document.querySelector('#image');
+            const imgPreview = document.querySelector('.img-preview');
+
+            imgPreview.style.display = 'block';
+
+            const ofReader = new FileReader();
+            ofReader.readAsDataURL(image.files[0]);
+
+            ofReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
     </script>
 @endsection

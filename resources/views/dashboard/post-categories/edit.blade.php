@@ -2,7 +2,7 @@
 
 @section('container')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Edit Post</h1>
+        <h1 class="h2">Edit Kategori</h1>
     </div>
 
     <div class="col-lg-8">
@@ -59,20 +59,5 @@
         document.addEventListener('trix-file-accept', function(e) {
             e.preventDefault();
         })
-
-        // menampilkan gambar
-        function previewImage() {
-            const image = document.querySelector('#image');
-            const imgPreview = document.querySelector('.img-preview');
-
-            imgPreview.style.display = 'block';
-
-            const ofReader = new FileReader();
-            ofReader.readAsDataURL(image.files[0]);
-
-            ofReader.onload = function(oFREvent) {
-                imgPreview.src = oFREvent.target.result;
-            }
-        }
     </script>
 @endsection

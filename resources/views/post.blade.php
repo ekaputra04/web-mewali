@@ -2,8 +2,8 @@
 
 @section('container')
     <main class="container p-0  pt-5 ">
-        <div class="row g-5">
-            <div class="col-md-8">
+        <div class="row g-5" >
+            <div class="col-md-8" data-aos="fade-right" data-aos-duration="2000">
                 <h3 class="pb-4 mb-4 fst-italic border-bottom"><a href="/posts?category={{ $post->category->slug }}"
                         class="text-black text-decoration-none ">{{ $post->category->name }}</a></h3>
 
@@ -64,7 +64,7 @@
                         <div class="mb-3">
                             <label for="nama_user" class="form-label">Nama Lengkap</label>
                             <input type="text" class="form-control @error('nama_user') is-invalid  @enderror"
-                                id="nama_user" name="nama_user" required autofocus value="{{ old('nama_user') }}"
+                                id="nama_user" name="nama_user" required value="{{ old('nama_user') }}"
                                 @auth placeholder="{{ auth()->user()->name }}"
                                 @else
                                 placeholder="Putu Bagus" @endauth>
@@ -77,7 +77,7 @@
                         <div class="mb-3">
                             <label for="email_user" class="form-label">Email</label>
                             <input type="text" class="form-control @error('email_user') is-invalid  @enderror"
-                                id="email_user" name="email_user" required autofocus value="{{ old('email_user') }}"
+                                id="email_user" name="email_user" required value="{{ old('email_user') }}"
                                 @auth placeholder="{{ auth()->user()->email }}"
                                 @else
                                 placeholder="putu@gmail.com" @endauth>
@@ -102,7 +102,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4" data-aos="fade-left" data-aos-duration="2000">
                 <div class="position-sticky" style="top: 2rem">
                     <div class="p-4 mb-3 bg-body-tertiary rounded">
                         <h4 class="fst-italic">{{ $post->category->name }}</h4>

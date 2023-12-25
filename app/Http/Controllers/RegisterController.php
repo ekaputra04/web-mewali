@@ -17,24 +17,16 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
-        // $validatedData = $request->validate([
-        //     'name' => 'required|max:255',
-        //     'username' => ['required', 'min:3', 'max:255', 'unique:users'],
-        //     'email' => 'required|email:dns|unique:users',
-        //     'password' => 'required|min:8|max:255',
-        //     'is_admin' => 'false'
-        // ]);
-
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'username' => [
                 'required',
                 'min:3',
                 'max:255',
-                'regex:/^[^\s]+$/'
+                'regex:/^[a-zA-Z0-9]+$/'
             ],
-            'email' => 'required|email:dns|unique:users',
-            'password' => 'required|min:8|max:255'
+            'email' => 'required|email:dns|unique:users|max:255|regex:/^[^\s]+$/',
+            'password' => 'required|min:8|max:255|regex:/^[^\s]+$/'
         ]);
 
         $validatedData = $validator->validated();
@@ -43,8 +35,6 @@ class RegisterController extends Controller
 
         User::create($validatedData);
 
-        // $request->session()->flash('success', 'Registration successfull! Please Login.');
-
-        return redirect('/login')->with('success', 'Registration successfull! Please Login.');
+        return redirect('/login')->with('success', 'Registrasi berhasil! Silahkan Login.');
     }
 }

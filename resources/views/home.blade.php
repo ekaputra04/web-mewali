@@ -1,7 +1,7 @@
 @extends('layouts/main')
 
 @section('container')
-    <main class="container mt-3 ">
+    <main class="container mt-3 " id="home">
         <div class="p-0  mb-4 rounded align-items-center position-relative" id="thumbnail-home" data-aos="fade-up" data-aos-duration="1500"
             id="home">
 
@@ -20,7 +20,7 @@
         <div data-aos="fade-up" data-aos-duration="1500">
             <a href="/posts" class="text-decoration-none text-black ">
                 <p class="fs-3 fw-medium ">
-                    Post <i class="bi bi-arrow-right"></i>
+                    Artikel <i class="bi bi-arrow-right"></i>
                 </p>
             </a>
         </div>
@@ -47,7 +47,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6 rounded-end "
+                                <div class="col-md-6 rounded"
                                     style="height: 370px;
                                 overflow: hidden;
                                 position: relative;
@@ -82,8 +82,8 @@
                     <div class="col-md-6 mx-0 px-1 " data-aos="fade-up" data-aos-duration="1500">
                         <div class="card mb-3">
                             <div class="row g-0">
-                                <div class="col-md-6 rounded-start  "
-                                    style="height: 200px;
+                                <div class="col-md-6 rounded"
+                                    style="height: 250px;
                                 overflow: hidden;
                                 position: relative;
                                 background-image: url({{ asset('storage/' . $sarana->image) }});
@@ -132,8 +132,8 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6 rounded-end  "
-                                    style="height: 200px;
+                                <div class="col-md-6 rounded"
+                                    style="height: 250px;
                                 overflow: hidden;
                                 position: relative;
                                 background-image: url({{ asset('storage/' . $sarana->image) }});

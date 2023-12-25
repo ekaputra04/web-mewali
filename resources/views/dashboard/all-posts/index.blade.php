@@ -17,8 +17,9 @@
             <thead>
                 <tr>
                     <th scope="col">No</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Category</th>
+                    <th scope="col">Judul</th>
+                    <th scope="col">Pembuat</th>
+                    <th scope="col">Kategori</th>
                     <th scope="col">Tanggal Dibuat</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -28,6 +29,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $post->title }}</td>
+                        <td>{{ $post->author->name }}</td>
                         <td>{{ $post->category->name }}</td>
                         <td>{{ $post->created_at->diffForHumans() }}</td>
                         <td>

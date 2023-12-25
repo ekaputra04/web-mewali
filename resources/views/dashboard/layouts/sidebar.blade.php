@@ -3,7 +3,7 @@
         aria-labelledby="sidebarMenuLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="sidebarMenuLabel">
-                Mewali
+                Mewali | Dashboard
             </h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"
                 aria-label="Close"></button>
@@ -87,7 +87,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('dashboard/users') ? 'active' : '' }}" href="/dashboard/pengguna">
+                        <a class="nav-link {{ Request::is('dashboard/users') ? 'active' : '' }}" href="/dashboard/users">
                             <svg class="bi">
                                 <use xlink:href="#file-earmark" />
                             </svg>

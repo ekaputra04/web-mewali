@@ -2,7 +2,7 @@
 
 @section('container')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Seluruh Komentar Artikel</h1>
+        <h1 class="h2">Daftar Usaha</h1>
     </div>
 
     @if (session()->has('success'))
@@ -13,33 +13,33 @@
     @endif
 
     <div class="table-responsive small">
+        <a href="/dashboard/usaha/create" class="btn btn-success mb-3 ">Tambahkan Usaha Baru</a>
         <table class="table table-striped table-sm">
             <thead>
                 <tr>
                     <th scope="col">No</th>
-                    <th scope="col">Judul Artikel</th>
-                    <th scope="col">Komentar</th>
-                    <th scope="col">Nama User</th>
-                    <th scope="col">Tanggal Dibuat</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Nama Usaha</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">No Telepon</th>
+                    <th scope="col">Alamat</th>
+                    <th scope="col">Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($comments as $comment)
+                @foreach ($usahas as $usaha)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ optional($comment->inPost)->title }}</td>
-                        <td>{{ $comment->pesan }}</td>
-                        <td>{{ $comment->nama_user }}</td>
-                        <td>{{ $comment->created_at->diffForHumans() }}</td>
+                        <td>{{ $usaha->name }}</td>
+                        <td>{{ $usaha->email }}</td>
+                        <td>{{ $usaha->no_telepon }}</td>
+                        <td>{{ $usaha->alamat }}</td>
                         <td>
-                            <a href="/dashboard/posts/{{ optional($comment->inPost)->slug }}" class="badge bg-success  "><i
-                                    class="bi bi-eye-fill"></i></a>
-
-                            <form action="/dashboard/all-comments/{{ $comment->id }}" method="POST" class="d-inline ">
+                            <a href="/dashboard/usaha/{{ $usaha->slug }}/edit" class="badge bg-warning  "><i
+                                    class="bi bi-pencil-square"></i></a>
+                                    
+                            <form action="/dashboard/usaha/{{ $usaha->slug }}" method="POST" class="d-inline ">
                                 @method('delete')
                                 @csrf
-                                <input type="hidden" name="id" value="{{ $comment->id }}">
                                 <button class="badge bg-danger border-0 "
                                     onclick="return confirm('Yakin Menghapus Data?')"><i
                                         class="bi bi-x-circle"></i></button>
@@ -47,7 +47,6 @@
                         </td>
                     </tr>
                 @endforeach
-
             </tbody>
         </table>
     </div>

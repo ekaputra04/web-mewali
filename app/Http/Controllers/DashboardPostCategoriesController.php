@@ -53,7 +53,7 @@ class DashboardPostCategoriesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(PostCategory $postCategory, Request $request)
+    public function edit(PostCategory $postCategory)
     {
         // dd($postCategory);
         return view('dashboard.post-categories.edit', [
@@ -87,7 +87,7 @@ class DashboardPostCategoriesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PostCategory $postCategory, Request $request)
+    public function destroy(PostCategory $postCategory)
     {
         PostCategory::destroy($postCategory->id);
 

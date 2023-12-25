@@ -10,7 +10,7 @@ class Comment extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
-    protected $with = ['inPost'];
+    // protected $with = ['inPost'];
 
     public function inPost()
     {

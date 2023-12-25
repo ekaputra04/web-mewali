@@ -47,6 +47,22 @@
                 
                 <ul class="nav flex-column">
                     <li class="nav-item">
+                        <a class="nav-link {{ Request::is('dashboard/users') ? 'active' : '' }}" href="/dashboard/users">
+                            <svg class="bi">
+                                <use xlink:href="#file-earmark" />
+                            </svg>
+                            Daftar Pengguna
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('dashboard/usaha') ? 'active' : '' }}" href="/dashboard/usaha">
+                            <svg class="bi">
+                                <use xlink:href="#file-earmark" />
+                            </svg>
+                            Daftar Usaha
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link {{ Request::is('dashboard/all-posts') ? 'active' : '' }}" href="/dashboard/all-posts">
                             <svg class="bi">
                                 <use xlink:href="#file-earmark" />
@@ -87,20 +103,21 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('dashboard/users') ? 'active' : '' }}" href="/dashboard/users">
+                        <a class="nav-link {{ Request::is('dashboard/paket-categories') ? 'active' : '' }}" href="/dashboard/paket-categories">
                             <svg class="bi">
                                 <use xlink:href="#file-earmark" />
                             </svg>
-                            Daftar Pengguna
+                            Kategori Paket Upacara
                         </a>
                     </li>
+                    
                 </ul>
             @endcan
 
 
             <hr class="my-3" />
 
-            <ul class="nav flex-column mb-auto">
+            <ul class="nav flex-column mb-5">
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2" href="/dashboard/profile">
                         <svg class="bi">

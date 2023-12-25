@@ -4,13 +4,14 @@
     <div class="container">
         <div class="row my-3">
             <div class="col-lg-8">
-                <h2 class="mb-3">{{ $sarana['title'] }}</h2>
+                <h2 class="mb-3">{{ $paket['title'] }}</h2>
 
-                <a href="/dashboard/sarana" class="btn btn-success  "><i class="bi bi-arrow-left"></i> Kembali ke Daftar
-                    Sarana</a>
-                <a href="/dashboard/sarana/{{ $sarana->slug }}/edit" class="btn btn-warning  "><i
+                <a href="/dashboard/paket" class="btn btn-success  "><i class="bi bi-arrow-left"></i> Kembali ke Daftar
+                    Paket</a>
+                <a href="/dashboard/paket/{{ $paket->slug }}/edit" class="btn btn-warning  "><i
                         class="bi bi-pencil-square"></i> Edit</a>
-                <form action="/dashboard/sarana/{{ $sarana->slug }}" method="POST" class="d-inline ">
+
+                <form action="/dashboard/paket/{{ $paket->slug }}" method="POST" class="d-inline ">
                     @method('delete')
                     @csrf
                     <button class="btn btn-danger " onclick="return confirm('Yakin Menghapus Data?')"><i
@@ -24,7 +25,7 @@
                         style="height: 300px;
                     overflow: hidden;
                     position: relative;
-                    background-image: url({{ asset('storage/' . $sarana->image) }});
+                    background-image: url({{ asset('storage/' . $paket->image) }});
                     background-repeat: no-repeat;
                     background-size: cover;
                     background-position: center;">
@@ -41,10 +42,10 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        Nama Sarana
+                                        Nama paket
                                     </td>
                                     <td>
-                                        {{ $sarana->nama_sarana }}
+                                        {{ $paket->nama_paket }}
                                     </td>
                                 </tr>
                                 <tr>
@@ -52,7 +53,7 @@
                                         Nama Toko
                                     </td>
                                     <td>
-                                        {{ $sarana->usaha->name }}
+                                        {{ $paket->usaha->name }}
                                     </td>
                                 </tr>
                                 <tr>
@@ -60,7 +61,7 @@
                                         Nomor Telepon
                                     </td>
                                     <td>
-                                        {{ $sarana->usaha->no_telepon }}
+                                        {{ $paket->usaha->no_telepon }}
                                     </td>
                                 </tr>
                                 <tr>
@@ -68,7 +69,7 @@
                                         Harga
                                     </td>
                                     <td>
-                                        Rp. {{ number_format($sarana->harga, 0, ',', '.') }}
+                                        Rp. {{ number_format($paket->harga, 0, ',', '.') }}
                                     </td>
                                 </tr>
                                 <tr>
@@ -76,11 +77,36 @@
                                         Deskripsi
                                     </td>
                                     <td>
-                                        {{ $sarana->deskripsi }}
+                                        {{ $paket->deskripsi }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Includes
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            @foreach ($includes as $include)
+                                            <li>{{ $include }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Notes
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            @foreach ($notes as $note)
+                                            <li>{{ $note }}</li>
+                                            @endforeach
+                                        </ul>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
+                        
                     </div>
                 </div>
             </div>

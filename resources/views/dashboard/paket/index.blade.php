@@ -2,7 +2,7 @@
 
 @section('container')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Seluruh Komentar Artikel</h1>
+        <h1 class="h2">Daftar Paket</h1>
     </div>
 
     @if (session()->has('success'))
@@ -13,33 +13,38 @@
     @endif
 
     <div class="table-responsive small">
+        <a href="/dashboard/paket/create" class="btn btn-success mb-3 ">Tambahkan Paket Upacara Baru</a>
         <table class="table table-striped table-sm">
             <thead>
                 <tr>
                     <th scope="col">No</th>
-                    <th scope="col">Judul Artikel</th>
-                    <th scope="col">Komentar</th>
-                    <th scope="col">Nama User</th>
-                    <th scope="col">Tanggal Dibuat</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Nama Paket</th>
+                    <th scope="col">Nama Usaha</th>
+                    <th scope="col">Kategori</th>
+                    <th scope="col">Deskripsi</th>
+                    <th scope="col">Harga</th>
+                    <th scope="col">Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($comments as $comment)
+                @foreach ($pakets as $paket)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ optional($comment->inPost)->title }}</td>
-                        <td>{{ $comment->pesan }}</td>
-                        <td>{{ $comment->nama_user }}</td>
-                        <td>{{ $comment->created_at->diffForHumans() }}</td>
+                        <td>{{ $paket->nama_paket }}</td>
+                        <td>{{ $paket->usaha->name }}</td>
+                        <td>{{ $paket->category->name }}</td>
+                        <td>{{ $paket->deskripsi }}</td>
+                        <td>Rp. {{ number_format($paket->harga, 0, ',', '.') }}</td>
                         <td>
-                            <a href="/dashboard/posts/{{ optional($comment->inPost)->slug }}" class="badge bg-success  "><i
+                            <a href="/dashboard/paket/{{ $paket->slug }}" class="badge bg-success  "><i
                                     class="bi bi-eye-fill"></i></a>
 
-                            <form action="/dashboard/all-comments/{{ $comment->id }}" method="POST" class="d-inline ">
+                            <a href="/dashboard/paket/{{ $paket->slug }}/edit" class="badge bg-warning  "><i
+                                    class="bi bi-pencil-square"></i></a>
+                                    
+                            <form action="/dashboard/paket/{{ $paket->slug }}" method="POST" class="d-inline ">
                                 @method('delete')
                                 @csrf
-                                <input type="hidden" name="id" value="{{ $comment->id }}">
                                 <button class="badge bg-danger border-0 "
                                     onclick="return confirm('Yakin Menghapus Data?')"><i
                                         class="bi bi-x-circle"></i></button>
@@ -47,7 +52,6 @@
                         </td>
                     </tr>
                 @endforeach
-
             </tbody>
         </table>
     </div>

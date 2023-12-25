@@ -4,16 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
+
 
 class Sarana extends Model
 {
     use HasFactory;
+    use Sluggable;
+
 
     protected $guarded = ['id'];
     // protected $fillable = ['nama_sarana', 'slug', 'nama_toko', 'no_telepon', 'harga', 'deskripsi'];
-    protected $with = ['saranaCategory', 'usaha'];
+    protected $with = ['category', 'usaha'];
 
-    public function saranaCategory()
+    public function category()
     {
         return $this->belongsTo(SaranaCategory::class);
     }
@@ -27,8 +31,6 @@ class Sarana extends Model
     {
         $query->when($filters['search'] ?? false, function ($query, $search) {
             return $query->where('nama_sarana', 'like', '%' . $search . '%')
-                ->orWhere('nama_toko', 'like', '%' . $search . '%')
-                ->orWhere('no_telepon', 'like', '%' . $search . '%')
                 ->orWhere('deskripsi', 'like', '%' . $search . '%');
         });
 
@@ -48,7 +50,7 @@ class Sarana extends Model
     {
         return [
             'slug' => [
-                'source' => 'name'
+                'source' => 'nama_sarana'
             ]
         ];
     }

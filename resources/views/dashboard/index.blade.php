@@ -10,7 +10,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Artikel</h5>
-                    <h3>5</h3>
+                    <h3>{{ $jumlahArtikelUser }}</h3>
                 </div>
             </div>
         </div>
@@ -18,12 +18,14 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Komentar</h5>
-                    <h3>5</h3>
+                    <h3>{{ $jumlahKomentarUser }}</h3>
                 </div>
             </div>
         </div>
     </div>
 
+    @can('admin')
+        
     <div class="row g-4 my-3">
         <div class="col-md-6">
             <div class="row g-3 ">
@@ -33,7 +35,7 @@
                 <div class="col-md-8 px-3 ">
                     <div class="card-body">
                         <h5 class="card-title">Jumlah Pengguna</h5>
-                        <h3>10</h3>
+                        <h3>{{ $jumlahPengguna }}</h3>
                     </div>
                 </div>
             </div>
@@ -46,7 +48,7 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">Jumlah Usaha</h5>
-                        <h3>10</h3>
+                        <h3>{{ $jumlahUsaha }}</h3>
                     </div>
                 </div>
             </div>
@@ -62,7 +64,7 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">Jumlah Artikel</h5>
-                        <h3>10</h3>
+                        <h3>{{ $jumlahArtikel }}</h3>
                     </div>
                 </div>
             </div>
@@ -75,7 +77,7 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">Jumlah Komentar</h5>
-                        <h3>10</h3>
+                        <h3>{{ $jumlahKomentar }}</h3>
                     </div>
                 </div>
             </div>
@@ -90,8 +92,8 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">Jumlah Sarana</h5>
-                        <h3>10</h3>
+                        <h5 class="card-title">Jumlah Sarana Upacara</h5>
+                        <h3>{{ $jumlahSarana }}</h3>
                     </div>
                 </div>
             </div>
@@ -103,11 +105,13 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">Jumlah Paket Sarana</h5>
-                        <h3>10</h3>
+                        <h5 class="card-title">Jumlah Paket Upacara</h5>
+                        <h3>{{ $jumlahPaket }}</h3>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    @endcan
+
 @endsection

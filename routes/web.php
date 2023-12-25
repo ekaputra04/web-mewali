@@ -3,7 +3,11 @@
 use App\Models\Post;
 use App\Models\Paket;
 use App\Models\Sarana;
+use App\Models\Comment;
 use App\Models\PaketCategory;
+use App\Models\Usaha;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
@@ -73,7 +77,28 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 // user dashboard
 Route::get('/dashboard', function () {
-    return view('dashboard.index');
+    $user = Auth::user();
+    $jumlahArtikelUser = Post::where('user_id', $user->id)->count();
+    $jumlahKomentarUser = Comment::join('posts', 'comments.post_id', '=', 'posts.id')
+        ->where('posts.user_id', $user->id)
+        ->count();
+    $jumlahPengguna = User::count();
+    $jumlahUsaha = Usaha::count();
+    $jumlahArtikel = Post::count();
+    $jumlahKomentar = Comment::count();
+    $jumlahSarana = Sarana::count();
+    $jumlahPaket = Paket::count();
+
+    return view('dashboard.index', [
+        'jumlahArtikelUser' => $jumlahArtikelUser,
+        'jumlahKomentarUser' => $jumlahKomentarUser,
+        'jumlahPengguna' => $jumlahPengguna,
+        'jumlahUsaha' => $jumlahUsaha,
+        'jumlahArtikel' => $jumlahArtikel,
+        'jumlahKomentar' => $jumlahKomentar,
+        'jumlahSarana' => $jumlahSarana,
+        'jumlahPaket' => $jumlahPaket,
+    ]);
 })->middleware('auth');
 
 Route::resource('/dashboard/users', DashboardUserController::class)->middleware('admin');
@@ -105,6 +130,3 @@ Route::post('/dashboard/posts-categories', [DashboardPostCategoriesController::c
 Route::get('/dashboard/posts-categories/{postCategory}/edit', [DashboardPostCategoriesController::class, 'edit'])->middleware('admin');
 Route::put('/dashboard/posts-categories/{postCategory}', [DashboardPostCategoriesController::class, 'update'])->middleware('admin');
 Route::delete('/dashboard/posts-categories/{postCategory}', [DashboardPostCategoriesController::class, 'destroy'])->middleware('admin');
-
-//detailpaket
-Route::get('/detailpaket', [DetailPaketController::class, 'viewdetailpaket']);

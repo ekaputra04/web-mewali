@@ -58,8 +58,8 @@
                                             @endif
 
                                             <img src="{{ asset('storage/' . $sarana->image) }}"
-                                                class="d-block w-100 zoom-in-out" alt="..." 
-                                                data-aos="zoom-out" data-aos-duration="3000">
+                                                class="d-block w-100 zoom-in-out" alt="..." data-aos="zoom-out"
+                                                data-aos-duration="3000">
                                             <div class="carousel-caption d-none d-md-block">
                                                 <h3>{{ $sarana->nama_sarana }}</h3>
                                             </div>
@@ -116,7 +116,7 @@
                                     <div class="card-body">
                                         <h6 class="card-title ">{{ $sarana->nama_sarana }}</h6>
                                         <p class="card-text">Rp. {{ number_format($sarana->harga, 0, ',', '.') }}</p>
-                                        <p class="card-text">{{ $sarana->deskripsi }}</p>
+                                        <p class="card-text">{{ Str::limit($sarana->deskripsi, 60, '...') }}</p>
                                         <div
                                             class="d-flex justify-content-evenly  align-items-center position-absolute bottom-0 mb-3 ">
                                             <form action="" method="get">
@@ -128,7 +128,8 @@
                                                     data-sarana-image="{{ asset('storage/' . $sarana->image) }}"
                                                     data-sarana-harga="Rp. {{ number_format($sarana->harga, 0, ',', '.') }}"
                                                     data-sarana-toko="{{ $sarana->nama_toko }}"
-                                                    data-sarana-deskripsi="{{ $sarana->deskripsi }}">
+                                                    data-sarana-deskripsi="{{ $sarana->deskripsi }}"
+                                                    data-sarana-no-telepon="{{ $sarana->usaha->no_telepon }}">
                                                     Detail
                                                 </button>
                                             </form>
@@ -168,11 +169,12 @@
                         <hr>
                         <p style="text-align: justify;" class="deskripsi-sarana">
                         </p>
+                        <p class="no-telepon" style="display: none;"></p> 
 
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                        <button type="button" class="btn btn-success ">Pesan sekarang</button>
+                        <a href="https://wa.me/" class="btn btn-success wa-link" target="_blank">Pesan Sekarang</a>
                     </div>
                 </div>
             </div>
@@ -181,22 +183,28 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var detailButtons = document.querySelectorAll('.detail-button');
+            let detailButtons = document.querySelectorAll('.detail-button');
 
             detailButtons.forEach(function(button) {
                 button.addEventListener('click', function() {
-                    var modalTitle = document.querySelector('.nama-sarana');
-                    var modalImage = document.querySelector('.gambar-sarana');
-                    var modalHarga = document.querySelector('.harga-sarana');
-                    var modalToko = document.querySelector('.nama-toko');
-                    var modalDeskripsi = document.querySelector(
-                        '.deskripsi-sarana');
+                    let modalTitle = document.querySelector('.nama-sarana');
+                    let modalImage = document.querySelector('.gambar-sarana');
+                    let modalHarga = document.querySelector('.harga-sarana');
+                    let modalToko = document.querySelector('.nama-toko');
+                    let modalDeskripsi = document.querySelector('.deskripsi-sarana');
+                    let modalNoTelepon = document.querySelector('.no-telepon'); // Tambahan
 
                     modalTitle.innerText = button.getAttribute('data-sarana-nama');
                     modalImage.src = button.getAttribute('data-sarana-image');
                     modalHarga.innerText = button.getAttribute('data-sarana-harga');
                     modalToko.innerText = button.getAttribute('data-sarana-toko');
                     modalDeskripsi.innerText = button.getAttribute('data-sarana-deskripsi');
+                    modalNoTelepon.innerText = button.getAttribute(
+                    'data-sarana-no-telepon'); // Tambahan
+                    modalNoTelepon.style.display = 'none'; // Tambahan
+
+                    let waLink = document.querySelector('.wa-link');
+                    waLink.href = 'https://wa.me/' + modalNoTelepon.innerText; // Tambahan
                 });
             });
         });

@@ -24,17 +24,13 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('dashboard/posts') ? 'active' : '' }}" href="/dashboard/posts">
-                        <svg class="bi">
-                            <use xlink:href="#file-earmark" />
-                        </svg>
+                        <i class="bi bi-file-earmark-text-fill"></i> 
                         Artikel Saya
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('dashboard/comments') ? 'active' : '' }}" href="/dashboard/comments">
-                        <svg class="bi">
-                            <use xlink:href="#file-earmark" />
-                        </svg>
+                        <i class="bi bi-chat-dots"></i> 
                         Komentar Artikel
                     </a>
                 </li>
@@ -48,65 +44,49 @@
                 <ul class="nav flex-column">
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('dashboard/users') ? 'active' : '' }}" href="/dashboard/users">
-                            <svg class="bi">
-                                <use xlink:href="#file-earmark" />
-                            </svg>
+                            <i class="bi bi-person-circle"></i> 
                             Daftar Pengguna
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('dashboard/usaha') ? 'active' : '' }}" href="/dashboard/usaha">
-                            <svg class="bi">
-                                <use xlink:href="#file-earmark" />
-                            </svg>
+                            <i class="bi bi-shop"></i> 
                             Daftar Usaha
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('dashboard/all-posts') ? 'active' : '' }}" href="/dashboard/all-posts">
-                            <svg class="bi">
-                                <use xlink:href="#file-earmark" />
-                            </svg>
+                            <i class="bi bi-files"></i> 
                             Seluruh Artikel
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('dashboard/all-comments') ? 'active' : '' }}" href="/dashboard/all-comments">
-                            <svg class="bi">
-                                <use xlink:href="#file-earmark" />
-                            </svg>
+                            <i class="bi bi-chat-square-text-fill"></i> 
                             Seluruh Komentar
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('dashboard/posts-categories') ? 'active' : '' }}" href="/dashboard/posts-categories">
-                            <svg class="bi">
-                                <use xlink:href="#file-earmark" />
-                            </svg>
+                            <i class="bi bi-card-list"></i> 
                             Kategori Artikel
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('dashboard/sarana') ? 'active' : '' }}" href="/dashboard/sarana">
-                            <svg class="bi">
-                                <use xlink:href="#file-earmark" />
-                            </svg>
+                            <i class="bi bi-flower3"></i> 
                             Sarana Upacara
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('dashboard/paket') ? 'active' : '' }}" href="/dashboard/paket">
-                            <svg class="bi">
-                                <use xlink:href="#file-earmark" />
-                            </svg>
+                            <i class="bi bi-box"></i> 
                             Paket Upacara
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('dashboard/paket-categories') ? 'active' : '' }}" href="/dashboard/paket-categories">
-                            <svg class="bi">
-                                <use xlink:href="#file-earmark" />
-                            </svg>
+                            <i class="bi bi-box-seam-fill"></i> 
                             Kategori Paket Upacara
                         </a>
                     </li>

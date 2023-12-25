@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Post;
+use App\Models\User;
 use App\Models\PostCategory;
 use Illuminate\Http\Request;
+use App\Models\PaketCategory;
 use App\Http\Controllers\Controller;
 // use Illuminate\Tests\Integration\Database\Fixtures\Post;
 
@@ -17,21 +18,22 @@ class PostController extends Controller
         $title = '';
         if (request('category')) {
             $category = PostCategory::firstWhere('slug', request('category'));
-            $title = ' in ' . $category->name;
+            $title = 'Kategori ' . $category->name;
         }
 
         if (request('author')) {
             $author = User::firstWhere('username', request('author'));
-            $title = ' by ' . $author->name;
+            $title = 'Oleh ' . $author->name;
         }
 
         return view('posts', [
             'title' => 'Artikel' . $title,
             'active' => 'posts',
+            'paketCategories' => PaketCategory::all(),
             'posts' => Post::latest()
                 ->filter(request(['search', 'category', 'author']))
                 ->paginate(8)
-                ->withQueryString(),
+                ->withQueryString()
         ]);
     }
 
@@ -56,6 +58,7 @@ class PostController extends Controller
         return view('post', [
             'title' => 'Post',
             'active' => 'posts',
+            'paketCategories' => PaketCategory::all(),
             'post' => $post,
             'posts' => Post::latest()
                 ->where('category_id', $post->category_id)

@@ -1,14 +1,18 @@
 <?php
 
 use App\Models\Post;
+use App\Models\Paket;
 use App\Models\Sarana;
+use App\Models\PaketCategory;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PaketController;
 use App\Http\Controllers\SaranaController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DetailPaketController;
 use App\Http\Controllers\DashboardPostController;
 use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\DashboardPaketController;
@@ -20,7 +24,6 @@ use App\Http\Controllers\DashboardProfileController;
 use App\Http\Controllers\DashboardAllCommentController;
 use App\Http\Controllers\DashboardPaketCategoryController;
 use App\Http\Controllers\DashboardPostCategoriesController;
-use App\Http\Controllers\DetailPaketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,26 +40,26 @@ Route::get('/', function () {
     return view('home', [
         'title' => 'Home',
         'active' => 'home',
+        'paketCategories' => PaketCategory::all(),
         'posts' => Post::latest()->take(2)->get(),
-        'saranas' => Sarana::latest()->take(4)->get()
+        'saranas' => Sarana::latest()->take(4)->get(),
+        'pakets' => Paket::latest()->take(4)->get()
     ]);
 });
 
 Route::get('/posts', [PostController::class, 'index']);
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
+Route::get('/paket', [PaketController::class, 'index']);
+Route::get('/paket/{paket:slug}', [PaketController::class, 'show']);
+
 Route::post('/posts/comment', [CommentController::class, 'store']);
 Route::get('/sarana', [SaranaController::class, 'index']);
-Route::get('/paket', function () {
-    return view('paket', [
-        'title' => 'Paket Upacara',
-        'active' => 'paket',
-    ]);
-});
 
 Route::get('/about', function () {
     return view('about', [
         'title' => 'about',
-        'active' => 'about'
+        'active' => 'about',
+        'paketCategories' => PaketCategory::all()
     ]);
 });
 

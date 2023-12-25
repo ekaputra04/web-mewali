@@ -21,15 +21,16 @@
                 <li>
                     <div class="btn-group">
                         <a class="nav-link {{ $active === 'paket' ? 'active' : '' }}" href="/paket">Paket Upacara</a>
-                        <button type="button" class="btn dropdown-toggle dropdown-toggle-split p-0 m-0" data-bs-toggle="dropdown" aria-expanded="false" stydata-bs-reference="parent">
-                          <span class="visually-hidden bg-light">Toggle Dropdown</span>
+                        <button type="button" class="btn dropdown-toggle dropdown-toggle-split p-0 m-0"
+                            data-bs-toggle="dropdown" aria-expanded="false" stydata-bs-reference="parent">
+                            <span class="visually-hidden bg-light">Toggle Dropdown</span>
                         </button>
                         <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Metatah</a></li>
-                          <li><hr class="dropdown-divider"></li>
-                          <li><a class="dropdown-item" href="#">Pawiwahan</a></li>          
+                            @foreach ($paketCategories as $category)
+                                <li><a class="dropdown-item" href="/paket?category={{ $category->slug }}">{{ $category->name }}</a></li>
+                            @endforeach
                         </ul>
-                      </div>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ $active === 'about' ? 'active' : '' }} mx-3" href="/about">Tentang Mewali</a>

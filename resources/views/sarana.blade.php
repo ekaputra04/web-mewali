@@ -58,7 +58,7 @@
                                             @endif
 
                                             <img src="{{ asset('storage/' . $sarana->image) }}"
-                                                class="d-block w-100 zoom-in-out" alt="..." style="margin-top: -100px;"
+                                                class="d-block w-100 zoom-in-out" alt="..." 
                                                 data-aos="zoom-out" data-aos-duration="3000">
                                             <div class="carousel-caption d-none d-md-block">
                                                 <h3>{{ $sarana->nama_sarana }}</h3>

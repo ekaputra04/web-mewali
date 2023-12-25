@@ -118,16 +118,16 @@
 
         <div class="container px-0 mx-0">
             <div class="row my-3 px-0 mx-0">
-                @foreach ($saranas as $sarana)
+                @foreach ($pakets as $paket)
                     <div class="col-md-6 mx-0 px-1 " data-aos="fade-up" data-aos-duration="1500">
                         <div class="card mb-3">
                             <div class="row g-0">                                
                                 <div class="col-md-6">
                                     <div class="card-body">
-                                        <h5 class="card-title">{{ $sarana->nama_sarana }}</h5>
-                                        <p class="card-text">Rp. {{ number_format($sarana->harga, 0, ',', '.') }}</p>
-                                        <p class="card-text">{{ $sarana->deskripsi }}</p>
-                                        <a href="/sarana" class="badge bg-success text-decoration-none ">Lihat
+                                        <h5 class="card-title">{{ $paket->nama_paket }}</h5>
+                                        <p class="card-text">Rp. {{ number_format($paket->harga, 0, ',', '.') }}</p>
+                                        <p class="card-text">{{ Str::limit($paket->deskripsi, 100, '...') }}</p>
+                                        <a href="/paket" class="badge bg-success text-decoration-none ">Lihat
                                             Selengkapnya...</a>
                                     </div>
                                 </div>
@@ -136,7 +136,7 @@
                                     style="height: 250px;
                                 overflow: hidden;
                                 position: relative;
-                                background-image: url({{ asset('storage/' . $sarana->image) }});
+                                background-image: url({{ asset('storage/' . $paket->image) }});
                                 background-repeat: no-repeat;
                                 background-size: cover;
                                 background-position: center;">

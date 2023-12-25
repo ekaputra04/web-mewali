@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sarana;
+use App\Models\PaketCategory;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSaranaRequest;
 use App\Http\Requests\UpdateSaranaRequest;
@@ -17,6 +18,7 @@ class SaranaController extends Controller
         return view('sarana', [
             'title' => 'Sarana Upacara',
             'active' => 'sarana',
+            'paketCategories' => PaketCategory::all(),
             'saranas' => Sarana::latest()
                 ->filter(request(['search', 'sarana_category']))
                 ->paginate(9)
@@ -48,6 +50,7 @@ class SaranaController extends Controller
         return view('post', [
             'title' => 'Sarana',
             'active' => 'sarana',
+            'paketCategories' => PaketCategory::all(),
             'sarana' => $sarana,
         ]);
     }

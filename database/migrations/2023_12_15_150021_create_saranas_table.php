@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('saranas', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('slug');
+            $table->string('harga');
+            $table->string('deskripsi');
+            $table->foreignId('usaha_id');
             $table->timestamps();
         });
     }

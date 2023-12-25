@@ -11,11 +11,14 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardPostController;
 use App\Http\Controllers\DashboardUserController;
+use App\Http\Controllers\DashboardPaketController;
+use App\Http\Controllers\DashboardUsahaController;
 use App\Http\Controllers\DashboardSaranaController;
 use App\Http\Controllers\DashboardAllPostController;
 use App\Http\Controllers\DashboardCommentController;
 use App\Http\Controllers\DashboardProfileController;
 use App\Http\Controllers\DashboardAllCommentController;
+use App\Http\Controllers\DashboardPaketCategoryController;
 use App\Http\Controllers\DashboardPostCategoriesController;
 use App\Http\Controllers\DetailPaketController;
 
@@ -50,16 +53,6 @@ Route::get('/paket', function () {
     ]);
 });
 
-Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
-Route::post('/login', [LoginController::class, 'authenticate']);
-Route::post('/logout', [LoginController::class, 'logout']);
-Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
-Route::post('/register', [RegisterController::class, 'store']);
-
-Route::get('/dashboard', function () {
-    return view('dashboard.index');
-})->middleware('auth');
-
 Route::get('/about', function () {
     return view('about', [
         'title' => 'about',
@@ -69,8 +62,19 @@ Route::get('/about', function () {
 
 Route::post('/contact', [ContactController::class, 'store']);
 
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
+Route::post('/register', [RegisterController::class, 'store']);
 
 // user dashboard
+Route::get('/dashboard', function () {
+    return view('dashboard.index');
+})->middleware('auth');
+
+Route::resource('/dashboard/users', DashboardUserController::class)->middleware('admin');
+Route::resource('/dashboard/usaha', DashboardUsahaController::class)->middleware('admin');
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
 Route::resource('/dashboard/comments', DashboardCommentController::class)->middleware('auth');
 Route::resource(
@@ -87,6 +91,9 @@ Route::put('/dashboard/all-posts/{post}', [DashboardAllPostController::class, 'u
 Route::delete('/dashboard/all-posts/{post}', [DashboardAllPostController::class, 'destroy'])->middleware('admin');
 
 Route::resource('/dashboard/all-comments', DashboardAllCommentController::class)->middleware('admin');
+Route::resource('/dashboard/paket', DashboardPaketController::class)->middleware('admin');
+Route::resource('/dashboard/paket-categories', DashboardPaketCategoryController::class)->middleware('admin');
+
 Route::resource('/dashboard/sarana', DashboardSaranaController::class)->middleware('admin');
 
 Route::get('/dashboard/posts-categories', [DashboardPostCategoriesController::class, 'index'])->middleware('admin');
@@ -95,8 +102,6 @@ Route::post('/dashboard/posts-categories', [DashboardPostCategoriesController::c
 Route::get('/dashboard/posts-categories/{postCategory}/edit', [DashboardPostCategoriesController::class, 'edit'])->middleware('admin');
 Route::put('/dashboard/posts-categories/{postCategory}', [DashboardPostCategoriesController::class, 'update'])->middleware('admin');
 Route::delete('/dashboard/posts-categories/{postCategory}', [DashboardPostCategoriesController::class, 'destroy'])->middleware('admin');
-
-Route::resource('/dashboard/users', DashboardUserController::class)->middleware('admin');
 
 //detailpaket
 Route::get('/detailpaket', [DetailPaketController::class, 'viewdetailpaket']);

@@ -20,7 +20,7 @@
                     <th scope="col">No</th>
                     <th scope="col">Nama Sarana</th>
                     <th scope="col">Nama Toko</th>
-                    <th scope="col">No Telepon</th>
+                    <th scope="col">Deskripsi</th>
                     <th scope="col">Harga</th>
                     <th scope="col">Aksi</th>
                 </tr>
@@ -30,8 +30,8 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $srn->nama_sarana }}</td>
-                        <td>{{ $srn->nama_toko }}</td>
-                        <td>{{ $srn->no_telepon }}</td>
+                        <td>{{ $srn->usaha->name }}</td>
+                        <td>{{ $srn->deskripsi }}</td>
                         <td>Rp. {{ number_format($srn->harga, 0, ',', '.') }}</td>
                         <td>
                             <a href="/dashboard/sarana/{{ $srn->slug }}" class="badge bg-success  "><i

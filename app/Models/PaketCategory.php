@@ -5,20 +5,27 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SaranaCategory extends Model
+class PaketCategory extends Model
 {
     use HasFactory;
-
     protected $guarded = ['id'];
-    protected $with = ['postCategory'];
 
-    public function postCategory()
+    public function paket()
     {
-        return $this->belongsTo(PostCategory::class);
+        return $this->hasMany(Paket::class);
     }
 
     public function getRouteKeyName()
     {
         return "slug";
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
     }
 }

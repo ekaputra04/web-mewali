@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Usaha;
 use App\Models\Sarana;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -25,7 +26,9 @@ class DashboardSaranaController extends Controller
      */
     public function create()
     {
-        return view('dashboard.sarana.create');
+        return view('dashboard.sarana.create', [
+            'usahas' => Usaha::all()
+        ]);
     }
 
     /**
@@ -34,10 +37,9 @@ class DashboardSaranaController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'nama_sarana' => 'required|max:255',
+            'usaha_id' => 'required',
+            'nama_sarana' => 'required|max:64',
             'slug' => 'required|unique:saranas',
-            'nama_toko' => 'required',
-            'no_telepon' => 'required',
             'harga' => 'required',
             'deskripsi' => 'required',
             'image' => 'image|file|max:2048',
@@ -61,6 +63,7 @@ class DashboardSaranaController extends Controller
     {
         return view('dashboard.sarana.show', [
             'sarana' => $sarana,
+            'usahas' => Usaha::all()
         ]);
     }
 
@@ -70,7 +73,8 @@ class DashboardSaranaController extends Controller
     public function edit(Sarana $sarana)
     {
         return view('dashboard.sarana.edit', [
-            'sarana' => $sarana
+            'sarana' => $sarana,
+            'usahas' => Usaha::all()
         ]);
     }
 
@@ -80,9 +84,8 @@ class DashboardSaranaController extends Controller
     public function update(Request $request, Sarana $sarana)
     {
         $rules = [
+            'usaha_id' => 'required',
             'nama_sarana' => 'required|max:255',
-            'nama_toko' => 'required',
-            'no_telepon' => 'required',
             'harga' => 'required',
             'deskripsi' => 'required',
         ];

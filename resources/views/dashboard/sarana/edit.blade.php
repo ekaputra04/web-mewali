@@ -30,25 +30,17 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="nama_toko" class="form-label">Nama Toko</label>
-                <input type="text" class="form-control @error('nama_toko') is-invalid  @enderror" id="nama_toko" name="nama_toko"
-                    required autofocus value="{{ old('nama_toko', $sarana->nama_toko) }}">
-                @error('nama_toko')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="no_telepon" class="form-label">No Telepon</label>
-                <input type="text" class="form-control @error('no_telepon') is-invalid  @enderror" id="no_telepon" name="no_telepon"
-                    required autofocus value="{{ old('no_telepon', $sarana->no_telepon) }}">
-                @error('no_telepon')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>            
+                <label for="usaha" class="form-label">Nama Toko</label>
+                <select class="form-select" name="usaha_id">
+                    @foreach ($usahas as $usaha)
+                        @if (old('usaha_id', $sarana->usaha_id) == $usaha->id)
+                            <option value="{{ $usaha->id }}" selected>{{ $usaha->name }}</option>
+                        @else
+                            <option value="{{ $usaha->id }}">{{ $usaha->name }}</option>
+                        @endif
+                    @endforeach
+                </select>
+            </div>           
             <div class="mb-3">
                 <label for="harga" class="form-label">Harga</label>
                 <input type="text" class="form-control @error('harga') is-invalid  @enderror" id="harga"
@@ -91,11 +83,11 @@
     </div>
 
     <script>
-        const title = document.querySelector("#title");
+        const name = document.querySelector("#nama_sarana");
         const slug = document.querySelector("#slug");
 
-        title.addEventListener("keyup", function() {
-            let preslug = title.value;
+        name.addEventListener("keyup", function() {
+            let preslug = name.value;
             preslug = preslug.replace(/ /g, "-");
             slug.value = preslug.toLowerCase();
         });

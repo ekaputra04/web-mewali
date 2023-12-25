@@ -2,17 +2,17 @@
 
 @section('container')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Buat Sarana</h1>
+        <h1 class="h2">Buat Paket Upacara</h1>
     </div>
 
     <div class="col-lg-8">
-        <form method="POST" action="/dashboard/sarana" enctype="multipart/form-data">
+        <form method="POST" action="/dashboard/paket" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
-                <label for="nama_sarana" class="form-label">Nama Sarana</label>
-                <input type="text" class="form-control @error('nama_sarana') is-invalid  @enderror" id="nama_sarana" name="nama_sarana"
-                    required autofocus value="{{ old('nama_sarana') }}">
-                @error('nama_sarana')
+                <label for="nama_paket" class="form-label">Nama Paket</label>
+                <input type="text" class="form-control @error('nama_paket') is-invalid  @enderror" id="nama_paket" name="nama_paket"
+                    required autofocus value="{{ old('nama_paket') }}">
+                @error('nama_paket')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
@@ -39,7 +39,19 @@
                         @endif
                     @endforeach
                 </select>
-            </div>   
+            </div>
+            <div class="mb-3">
+                <label for="category_id" class="form-label">Kategori</label>
+                <select class="form-select" name="category_id">
+                    @foreach ($categories as $category)
+                        @if (old('category_id') == $category->id)
+                            <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                        @else
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endif
+                    @endforeach
+                </select>
+            </div>
             <div class="mb-3">
                 <label for="harga" class="form-label">Harga</label>
                 <input type="text" class="form-control @error('harga') is-invalid  @enderror" id="harga"
@@ -51,9 +63,9 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="deskripsi" class="form-label">Deskripsi Sarana</label>
-                <input type="text" class="form-control @error('deskripsi') is-invalid  @enderror" id="deskripsi"
-                    name="deskripsi" required value="{{ old('deskripsi') }}">
+                <label for="exampleFormControlTextarea3" class="form-label">Deskripsi</label>
+                <textarea class="form-control @error('deskripsi') is-invalid  @enderror" id="exampleFormControlTextarea3" rows="3"
+                    placeholder="Deskripsi" required id="deskripsi" name="deskripsi"></textarea>
                 @error('deskripsi')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -61,7 +73,27 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="image" class="form-label">Foto Sarana</label>
+                <label for="exampleFormControlTextarea1" class="form-label">Includes</label>
+                <textarea class="form-control @error('includes') is-invalid  @enderror" id="exampleFormControlTextarea1" rows="3"
+                    placeholder="Keterangan tambahan" required id="includes" name="includes"></textarea>
+                @error('includes')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea2" class="form-label">Notes</label>
+                <textarea class="form-control @error('notes') is-invalid  @enderror" id="exampleFormControlTextarea2" rows="3"
+                    placeholder="Notes tambahan" required id="notes" name="notes"></textarea>
+                @error('notes')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Foto paket</label>
                 <img class="img-preview img-fluid mb-3 col-sm-6 ">
                 <input class="form-control @error('image') is-invalid  @enderror" type="file" id="image"
                     name="image" onChange="previewImage()">
@@ -71,13 +103,13 @@
                     </div>
                 @enderror
             </div>
-            <button type="submit" class="btn btn-success mb-4 ">Buat Sarana</button>
-            <a href="/dashboard/sarana" class="btn btn-warning  mb-4">Batal</a>
+            <button type="submit" class="btn btn-success mb-4 ">Buat paket</button>
+            <a href="/dashboard/paket" class="btn btn-warning  mb-4">Batal</a>
         </form>
     </div>
 
     <script>
-        const title = document.querySelector("#nama_sarana");
+        const title = document.querySelector("#nama_paket");
         const slug = document.querySelector("#slug");
 
         title.addEventListener("keyup", function() {

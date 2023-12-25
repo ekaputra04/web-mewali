@@ -11,17 +11,16 @@ class Sarana extends Model
 
     protected $guarded = ['id'];
     // protected $fillable = ['nama_sarana', 'slug', 'nama_toko', 'no_telepon', 'harga', 'deskripsi'];
-    protected $with = ['saranaCategory'];
-
-
-    public function getRouteKeyName()
-    {
-        return "slug";
-    }
+    protected $with = ['saranaCategory', 'usaha'];
 
     public function saranaCategory()
     {
         return $this->belongsTo(SaranaCategory::class);
+    }
+
+    public function usaha()
+    {
+        return $this->belongsTo(Usaha::class, 'usaha_id');
     }
 
     public function scopeFilter($query, array $filters)
@@ -38,5 +37,19 @@ class Sarana extends Model
                 $query->where('slug', $category);
             });
         });
+    }
+
+    public function getRouteKeyName()
+    {
+        return "slug";
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
     }
 }

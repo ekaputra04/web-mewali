@@ -1,12 +1,12 @@
 <?php
 
 use App\Models\Post;
+use App\Models\User;
 use App\Models\Paket;
+use App\Models\Usaha;
 use App\Models\Sarana;
 use App\Models\Comment;
 use App\Models\PaketCategory;
-use App\Models\Usaha;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -24,6 +24,7 @@ use App\Http\Controllers\DashboardUsahaController;
 use App\Http\Controllers\DashboardSaranaController;
 use App\Http\Controllers\DashboardAllPostController;
 use App\Http\Controllers\DashboardCommentController;
+use App\Http\Controllers\DashboardContactController;
 use App\Http\Controllers\DashboardProfileController;
 use App\Http\Controllers\DashboardAllCommentController;
 use App\Http\Controllers\DashboardPaketCategoryController;
@@ -123,6 +124,7 @@ Route::resource('/dashboard/paket', DashboardPaketController::class)->middleware
 Route::resource('/dashboard/paket-categories', DashboardPaketCategoryController::class)->middleware('admin');
 
 Route::resource('/dashboard/sarana', DashboardSaranaController::class)->middleware('admin');
+Route::resource('/dashboard/contact', DashboardContactController::class)->middleware('admin');
 
 Route::get('/dashboard/posts-categories', [DashboardPostCategoriesController::class, 'index'])->middleware('admin');
 Route::get('/dashboard/posts-categories/create', [DashboardPostCategoriesController::class, 'create'])->middleware('admin');

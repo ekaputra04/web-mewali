@@ -90,7 +90,12 @@
                             Kategori Paket Upacara
                         </a>
                     </li>
-                    
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('dashboard/contact') ? 'active' : '' }}" href="/dashboard/contact">
+                            <i class="bi bi-envelope-paper"></i>
+                            Kontak Masuk
+                        </a>
+                    </li>
                 </ul>
             @endcan
 

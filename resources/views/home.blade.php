@@ -96,7 +96,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $sarana->nama_sarana }}</h5>
                                         <p class="card-text">Rp. {{ number_format($sarana->harga, 0, ',', '.') }}</p>
-                                        <p class="card-text">{{ $sarana->deskripsi }}</p>
+                                        <p class="card-text">{{ Str::limit($sarana->deskripsi, 100, '...') }}</p>
                                         <a href="/sarana" class="badge bg-success text-decoration-none ">Lihat
                                             Selengkapnya...</a>
                                     </div>

@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreContactRequest;
-use App\Http\Requests\UpdateContactRequest;
+use Illuminate\Http\Request;
 
-class ContactController extends Controller
+class DashboardContactController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('dashboard.contact.index', [
+            'contacts' => Contact::latest()->get(),
+        ]);
     }
 
     /**
@@ -31,16 +31,7 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-        $validatedData = $request->validate([
-            'email' => 'required|email:dns|max:255|regex:/^[^\s]+$/',
-            'pesan' => 'required'
-        ]);
-
-
-        Contact::create($validatedData);
-
-        return redirect("/")->with('success', 'Pesan berhasil dikirim!');
+        //
     }
 
     /**
@@ -62,7 +53,7 @@ class ContactController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateContactRequest $request, Contact $contact)
+    public function update(Request $request, Contact $contact)
     {
         //
     }
@@ -72,6 +63,8 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        Contact::destroy($contact->id);
+
+        return redirect('/dashboard/contact')->with('success', 'Kontak masuk berhasil dihapus!');
     }
 }

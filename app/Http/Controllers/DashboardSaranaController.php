@@ -83,7 +83,6 @@ class DashboardSaranaController extends Controller
     {
         $rules = [
             'usaha_id' => 'required',
-            'category_' => 'required',
             'nama_sarana' => 'required|max:255',
             'harga' => 'required',
             'deskripsi' => 'required',
@@ -101,8 +100,6 @@ class DashboardSaranaController extends Controller
             }
             $validatedData['image'] = $request->file('image')->store('sarana-images');
         }
-
-        $validatedData['deskripsi_singkat'] = Str::limit(strip_tags($request->deskripsi), 30, '...');
 
         Sarana::where('id', $sarana->id)->update($validatedData);
 

@@ -60,18 +60,26 @@
                 <h5>Hubungi Kami</h5>
                 <p>Dapatkan Penawaran Menarik</p>
                 <form action="/contact" method="POST">
+                    @csrf
+                    @if (session()->has('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                aria-label="Close"></button>
+                        </div>
+                    @endif
                     <div class="mb-3">
-                      <label for="email" class="form-label">Email</label>
-                      <input type="text" class="form-control @error('email') is-invalid  @enderror"
-                          id="email" name="email" required value="{{ old('email') }}"
-                          @auth placeholder="{{ auth()->user()->email }}"
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control @error('email') is-invalid  @enderror" id="email"
+                            name="email" required value="{{ old('email') }}"
+                            @auth placeholder="{{ auth()->user()->email }}"
                           @else
                           placeholder="putu@gmail.com" @endauth>
-                      @error('email')
-                          <div class="invalid-feedback">
-                              {{ $message }}
-                          </div>
-                      @enderror
+                        @error('email')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea1" class="form-label">Pesan</label>
